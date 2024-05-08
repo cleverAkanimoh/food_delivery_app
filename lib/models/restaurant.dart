@@ -240,15 +240,19 @@ class Restaurant extends ChangeNotifier {
     ),
   ];
 
+  // user cart
+  final List<CartItem> _cart = [];
+
+  // user Address
+  String _deliveryAddress = "Uyo, Akwa Ibom State, Ng";
+
 // G E T T E R S
 
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
+  String get deliveryAddress => _deliveryAddress;
 
   // O P E R A T I O N S
-
-  // user cart
-  final List<CartItem> _cart = [];
 
   // add to cart
 
@@ -324,6 +328,12 @@ class Restaurant extends ChangeNotifier {
   // clear cart
   void clearCart() {
     _cart.clear();
+    notifyListeners();
+  }
+
+// update address
+  void updateDeliveryAddress(String newAddress) {
+    _deliveryAddress = newAddress;
     notifyListeners();
   }
 
