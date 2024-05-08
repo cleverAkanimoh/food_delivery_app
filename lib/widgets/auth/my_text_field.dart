@@ -26,7 +26,7 @@ class MyTextField extends StatelessWidget {
               borderSide: BorderSide(
                 color: Theme.of(context).colorScheme.tertiary,
               ),
-              borderRadius: BorderRadius.circular(5)),
+              borderRadius: BorderRadius.circular(8)),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary,
