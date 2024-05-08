@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:food_delivery_app/models/restaurant.dart';
-import 'package:food_delivery_app/pages/home_page.dart';
-import 'package:food_delivery_app/pages/payment_page.dart';
-import 'package:food_delivery_app/widgets/cart_page/my_cart_tile.dart';
-import 'package:food_delivery_app/widgets/my_button.dart';
+import '/models/restaurant.dart';
+import '/pages/home_page.dart';
+import '/pages/payment_page.dart';
+import '/widgets/cart_page/my_cart_tile.dart';
+import '/widgets/my_button.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {

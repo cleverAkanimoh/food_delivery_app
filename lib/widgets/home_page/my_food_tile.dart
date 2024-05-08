@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import '/models/food.dart';
 
 class MyFoodTile extends StatelessWidget {
@@ -50,7 +49,15 @@ class MyFoodTile extends StatelessWidget {
                 // food Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(food.imagePath, height: 120),
+                  child: SizedBox(
+                    width: 80,
+                    height: 120,
+                    child: Image.asset(
+                      food.imagePath,
+                      height: 120,
+                      width: 80,
+                    ),
+                  ),
                 ),
               ],
             ),

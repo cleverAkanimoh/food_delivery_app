@@ -46,7 +46,12 @@ class _FoodPageState extends State<FoodPage> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset(widget.food.imagePath),
+                SafeArea(
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Image.asset(widget.food.imagePath)),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(25),
                   child: Column(
