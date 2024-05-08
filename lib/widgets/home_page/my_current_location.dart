@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import '/models/restaurant.dart';
+import 'package:provider/provider.dart';
 
 class MyCurrentLocation extends StatelessWidget {
-  const MyCurrentLocation({super.key});
+  MyCurrentLocation({super.key});
+  final TextEditingController textController = TextEditingController();
 
   void openLocationSearchBox(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text("Your location"),
-        content: const TextField(
-          decoration: InputDecoration(
-            hintText: "Enter address",
-          ),
+        content: TextField(
+          decoration: const InputDecoration(hintText: "Enter address"),
+          controller: textController,
         ),
         actions: [
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              Navigator.pop(context);
+              textController.clear();
+            },
             child: const Text("Cancel"),
           ),
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              String newAddress = textController.text;
+              context.read<Restaurant>().updateDeliveryAddress(newAddress);
+              Navigator.pop(context);
+              textController.clear();
+            },
             child: const Text("Save"),
           ),
         ],
@@ -45,13 +54,15 @@ class MyCurrentLocation extends StatelessWidget {
             onTap: () => openLocationSearchBox(context),
             child: Row(
               children: [
-                Text(
-                  "122 Aka rd, uyo, Aks",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Consumer<Restaurant>(builder: (context, restaurant, child) {
+                  return Text(
+                    restaurant.deliveryAddress,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }),
                 const Icon(
                   Icons.keyboard_arrow_down_rounded,
                 )

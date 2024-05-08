@@ -1,4 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/services/auth/auth_service.dart';
