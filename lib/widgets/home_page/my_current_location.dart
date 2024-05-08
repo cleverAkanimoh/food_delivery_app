@@ -11,7 +11,7 @@ class MyCurrentLocation extends StatelessWidget {
         title: const Text("Your location"),
         content: const TextField(
           decoration: InputDecoration(
-            hintText: "Search address",
+            hintText: "Enter address",
           ),
         ),
         actions: [

@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import '/services/auth/auth_service.dart';
 import '/widgets/auth/my_text_field.dart';
 import '/widgets/my_button.dart';
 
@@ -17,68 +20,120 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  // register function
+  void register() async {
+    // get auth service
+    final _authService = AuthService();
+
+    // check if password match -> create user
+    if (passwordController.text == confirmPasswordController.text) {
+      // try creating user
+      try {
+        await _authService.signUpWithEmailAndPassword(
+          emailController.text,
+          passwordController.text,
+        );
+      }
+      // display any error
+      catch (e) {
+        showDialog(
+          context: context,
+          builder: ((context) => AlertDialog(
+                title: Text(e.toString()),
+              )),
+        );
+      }
+    }
+
+    // check if password != match -> show error
+    else {
+      showDialog(
+        context: context,
+        builder: ((context) => const AlertDialog(
+              title: Text("Passwords don't match"),
+            )),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.lock_open_rounded,
-            size: 100,
-            color: Theme.of(context).colorScheme.inversePrimary,
-          ),
-          const SizedBox(height: 25),
-          Text(
-            "Let's create an account for you",
-            style: TextStyle(
-              fontSize: 16,
-              color: Theme.of(context).colorScheme.inversePrimary,
+          Expanded(
+            child: ListView(
+              children: [
+                Column(
+                  children: [
+                    Icon(
+                      Icons.lock_open_rounded,
+                      size: 100,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    const SizedBox(height: 25),
+                    Text(
+                      "Let's create an account for you",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+                    // TextField
+                    MyTextField(
+                      controller: emailController,
+                      hintText: "Email",
+                      obscureText: false,
+                    ),
+                    MyTextField(
+                      controller: passwordController,
+                      hintText: "Password",
+                      obscureText: true,
+                    ),
+                    MyTextField(
+                      controller: confirmPasswordController,
+                      hintText: "Confirm Password",
+                      obscureText: true,
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    MyButton(
+                      onTap: register,
+                      text: "Register",
+                    ),
+
+                    const SizedBox(height: 25),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Already have an account? ",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: widget.onTap,
+                          child: Text(
+                            "Log in here",
+                            style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 25),
-          // TextField
-          MyTextField(
-            controller: emailController,
-            hintText: "Email",
-            obscureText: false,
-          ),
-          MyTextField(
-            controller: passwordController,
-            hintText: "Password",
-            obscureText: true,
-          ),
-          MyTextField(
-            controller: confirmPasswordController,
-            hintText: "Confirm Password",
-            obscureText: true,
-          ),
-
-          const SizedBox(height: 20),
-          MyButton(onTap: () {}, text: "Register"),
-          const SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Already have an account? ",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
-              ),
-              GestureDetector(
-                onTap: widget.onTap,
-                child: Text(
-                  "Log in here",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ],
-          )
         ],
       ),
     );

@@ -1,5 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:food_delivery_app/services/auth/auth_service.dart';
 import '/widgets/auth/my_text_field.dart';
 import '/widgets/my_button.dart';
 
@@ -19,14 +21,31 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void _login() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
-    );
+  void login() async {
+    //  get instance of auth service
+    final _authService = AuthService();
+
+    // try sign in
+    try {
+      await _authService.signInWithEmailAndPassword(
+        emailController.text,
+        passwordController.text,
+      );
+    }
+    // display any errors
+    catch (e) {
+      showDialog(
+        context: context,
+        builder: ((context) => AlertDialog(
+              title: Text(e.toString()),
+            )),
+      );
+    }
+
+    // await any errors
   }
+
+  void forgotPw() {}
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           const SizedBox(height: 20),
-          MyButton(onTap: _login, text: "Log in"),
+          MyButton(onTap: login, text: "Log in"),
           const SizedBox(height: 25),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
