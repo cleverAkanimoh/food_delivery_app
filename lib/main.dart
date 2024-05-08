@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/firebase_options.dart';
+import 'package:food_delivery_app/services/auth/auth_gate.dart';
 import '/models/restaurant.dart';
 import 'package:provider/provider.dart';
-import 'auth/login_or_register.dart';
 import 'themes/theme_provider.dart';
 
 void main() async {
@@ -14,7 +14,7 @@ void main() async {
       providers: [
         // theme provider
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
-        // restuarant provider
+        // restaurant provider
         ChangeNotifierProvider(create: (context) => Restaurant()),
       ],
       child: const AppEntryPoint(),
@@ -32,7 +32,7 @@ class AppEntryPoint extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery App',
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: const AuthPage(),
+      home: const AuthGate(),
     );
   }
 }
