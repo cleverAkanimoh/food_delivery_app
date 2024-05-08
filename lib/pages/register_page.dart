@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           const SizedBox(height: 25),
           Text(
-            "Quick registration",
+            "Let's create an account for you",
             style: TextStyle(
               fontSize: 16,
               color: Theme.of(context).colorScheme.inversePrimary,
