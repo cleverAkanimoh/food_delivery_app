@@ -58,34 +58,34 @@ class CartPage extends StatelessWidget {
             ],
           ),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // list of cart items
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    userCart.isEmpty
-                        ? Center(
-                            child: Column(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 30),
-                                  child: const Text("Your cart is empty"),
-                                ),
-                                TextButton(
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomePage(),
-                                    ),
-                                  ),
-                                  child: const Text("Go to menu"),
-                                )
-                              ],
+              userCart.isEmpty
+                  ? Expanded(
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 10),
+                              child: const Text("Your cart is empty"),
                             ),
-                          )
-                        : Expanded(
+                            TextButton(
+                              onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePage(),
+                                ),
+                              ),
+                              child: const Text("Go to menu"),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  : Expanded(
+                      child: Column(
+                        children: [
+                          Expanded(
                             child: ListView.builder(
                                 itemCount: userCart.length,
                                 itemBuilder: (context, index) {
@@ -93,28 +93,23 @@ class CartPage extends StatelessWidget {
                                   final cartItem = userCart[index];
 
                                   // cart tile ui
-                                  return Column(
-                                    children: [
-                                      CartTile(cartItem: cartItem),
-                                      // show check if there is cart item if not show go to menu button
-                                      MyButton(
-                                        onTap: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const PaymentPage(),
-                                          ),
-                                        ),
-                                        text: "Go to checkout",
-                                      ),
-                                      const SizedBox(height: 30),
-                                    ],
-                                  );
+                                  return CartTile(cartItem: cartItem);
                                 }),
                           ),
-                  ],
-                ),
-              ),
+                          // show check if there is cart item if not show go to menu button
+                          MyButton(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PaymentPage(),
+                              ),
+                            ),
+                            text: "Go to checkout",
+                          ),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
+                    ),
             ],
           ),
         );

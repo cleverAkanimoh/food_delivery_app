@@ -191,7 +191,7 @@ class Restaurant extends ChangeNotifier {
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
       imagePath: "assets/images/food_image.avif",
       price: 4.99,
-      category: FoodCategory.drinks,
+      category: FoodCategory.burgers,
       availableAddons: [
         Addon(name: "Vegan Cheese", price: 0.99),
         Addon(name: "Grilled Mushroom", price: 1.99),
@@ -200,12 +200,12 @@ class Restaurant extends ChangeNotifier {
     ),
     // drinks
     Food(
-      name: "Classic Cheese Burger",
+      name: "mojito",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
       imagePath: "assets/images/food_image.avif",
       price: 4.99,
-      category: FoodCategory.burgers,
+      category: FoodCategory.drinks,
       availableAddons: [
         Addon(name: "Extra Cheese", price: 0.99),
         Addon(name: "Bacon", price: 1.99),
@@ -213,12 +213,12 @@ class Restaurant extends ChangeNotifier {
       ],
     ),
     Food(
-      name: "BBQ Bacon Burger",
+      name: "Coke",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
       imagePath: "assets/images/food_image.avif",
       price: 4.99,
-      category: FoodCategory.burgers,
+      category: FoodCategory.drinks,
       availableAddons: [
         Addon(name: "Grilled Onion", price: 0.99),
         Addon(name: "Jelapehos", price: 1.49),
@@ -226,12 +226,12 @@ class Restaurant extends ChangeNotifier {
       ],
     ),
     Food(
-      name: "Veggie Burger",
+      name: "fanta",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
       imagePath: "assets/images/food_image.avif",
       price: 4.99,
-      category: FoodCategory.burgers,
+      category: FoodCategory.drinks,
       availableAddons: [
         Addon(name: "Vegan Cheese", price: 0.99),
         Addon(name: "Grilled Mushroom", price: 1.99),
@@ -358,6 +358,9 @@ class Restaurant extends ChangeNotifier {
     receipt.writeln("---------------");
     receipt.writeln();
     receipt.writeln("Total Items: ${getTotalItemCount()}");
+    receipt.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
+
+    return receipt.toString();
   }
 
   // format double value to money
