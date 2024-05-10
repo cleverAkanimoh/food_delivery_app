@@ -4,10 +4,12 @@ import 'package:food_delivery_app/pages/cart_page.dart';
 class MySliverAppBar extends StatelessWidget {
   final Widget child;
   final Widget title;
+  final String heading;
   const MySliverAppBar({
     super.key,
     required this.child,
     required this.title,
+    required this.heading,
   });
 
   @override
@@ -30,12 +32,16 @@ class MySliverAppBar extends StatelessWidget {
             ))
       ],
       backgroundColor: Theme.of(context).colorScheme.background,
-      title: const Text("Sunset Diner"),
+      title: Text(heading),
       flexibleSpace: FlexibleSpaceBar(
         background: child,
         title: title,
         centerTitle: true,
-        titlePadding: const EdgeInsets.only(left: 0, right: 0, top: 0),
+        titlePadding: const EdgeInsets.only(
+          left: 0,
+          right: 0,
+          top: 0,
+        ),
         expandedTitleScale: 1,
       ),
     );

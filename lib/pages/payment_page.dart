@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:food_delivery_app/pages/delivery_progress_page.dart';
 import 'package:food_delivery_app/widgets/my_button.dart';

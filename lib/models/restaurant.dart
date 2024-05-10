@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'cart_item.dart';
-import 'food.dart';
+import 'meals/food.dart';
 
 class Restaurant extends ChangeNotifier {
   final List<Food> _menu = [

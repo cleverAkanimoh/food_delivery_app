@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pages/favorite_page.dart';
+import 'pages/order_page.dart';
+import 'pages/settings_page.dart';
 import 'pages/cart_page.dart';
 import 'pages/home_page.dart';
 
@@ -20,17 +23,14 @@ class _LayoutState extends State<Layout> {
         page = const HomePage();
         break;
       case 1:
-        page = const Scaffold();
+        page = const FavoritePage();
         break;
       case 2:
-        page = const Scaffold();
+        page = const OrderPage();
         break;
       case 3:
-        page = const Scaffold();
+        page = const SettingsPage();
         break;
-      // case 4:
-      //   page = const CartPage();
-      //   break;
       default:
         throw UnimplementedError('no widget for $currentPage');
     }
@@ -40,7 +40,7 @@ class _LayoutState extends State<Layout> {
     var mainArea = ColoredBox(
       color: Theme.of(context).colorScheme.background,
       child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 400),
         child: page,
       ),
     );
@@ -49,22 +49,26 @@ class _LayoutState extends State<Layout> {
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 450) {
-            // Use a more mobile-friendly layout with BottomNavigationBar
-            // on narrow screens.
+            // Use a more mobile-friendly layout with BottomNavigationBar on narrow screens.
             return Column(
               children: [
                 Expanded(child: mainArea),
                 SafeArea(
                   child: BottomAppBar(
                     height: 90,
+                    padding: const EdgeInsets.only(
+                        left: 20, top: 1, right: 20, bottom: 20),
+                    color: Colors.transparent,
                     child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 0),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background,
+                        color: Theme.of(context).colorScheme.tertiary,
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           appBarItem(
                             0,
@@ -78,37 +82,37 @@ class _LayoutState extends State<Layout> {
                             Icons.favorite_outline_outlined,
                             Icons.favorite,
                           ),
-                          Container(
-                            height: 70,
-                            width: 70,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary,
-                              shape: BoxShape.circle,
-                              // border: Border.all(
-                              //   color: Theme.of(context).colorScheme.background,
-                              //   width: 10,
-                              // ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      Theme.of(context).colorScheme.background,
-                                  spreadRadius: 7,
-                                  blurRadius: 10,
-                                ),
-                              ],
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CartPage(),
+                          Transform.translate(
+                            offset: const Offset(0, -18),
+                            child: Container(
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.primary,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    spreadRadius: 5,
+                                    blurRadius: 5,
                                   ),
-                                );
-                              },
-                              icon: Icon(
-                                Icons.shopping_cart_outlined,
-                                color: Theme.of(context).colorScheme.tertiary,
+                                ],
+                              ),
+                              child: IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const CartPage(),
+                                    ),
+                                  );
+                                },
+                                icon: Icon(
+                                  Icons.shopping_cart_outlined,
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                  size: 28,
+                                ),
                               ),
                             ),
                           ),
@@ -122,7 +126,7 @@ class _LayoutState extends State<Layout> {
                             3,
                             "Menu",
                             Icons.menu,
-                            Icons.person,
+                            Icons.settings,
                           ),
                         ],
                       ),
@@ -156,7 +160,7 @@ class _LayoutState extends State<Layout> {
                       navRailItem(
                         "Menu",
                         const Icon(Icons.menu),
-                        const Icon(Icons.person),
+                        const Icon(Icons.settings),
                       ),
                       navRailItem(
                         "Cart",
@@ -202,6 +206,8 @@ class _LayoutState extends State<Layout> {
 
   GestureDetector appBarItem(int index, String label, IconData icon,
       [IconData? activeIcon]) {
+    var inversePrimaryColor = Theme.of(context).colorScheme.inversePrimary;
+    var primaryColor = Theme.of(context).colorScheme.primary;
     return GestureDetector(
       onTap: () {
         setState(
@@ -215,17 +221,15 @@ class _LayoutState extends State<Layout> {
         children: [
           Icon(
             currentPage != index ? icon : activeIcon,
-            size: 26,
-            color: currentPage == index ? Colors.red : Colors.black,
+            size: 24,
+            color: currentPage == index ? inversePrimaryColor : primaryColor,
           ),
           Text(
             label,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: currentPage == index
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.inversePrimary,
+              color: currentPage == index ? inversePrimaryColor : primaryColor,
             ),
           )
         ],

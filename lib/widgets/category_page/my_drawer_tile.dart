@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MyDrawerTile extends StatelessWidget {
+class DrawerTile extends StatelessWidget {
   final String text;
   final IconData? icon;
   final void Function()? onTap;
-  const MyDrawerTile({
+  const DrawerTile({
     super.key,
     required this.text,
     required this.icon,

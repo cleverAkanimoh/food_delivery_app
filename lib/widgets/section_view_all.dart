@@ -13,7 +13,7 @@ class SectionViewAll extends StatelessWidget {
         Text(
           heading!,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Theme.of(context).colorScheme.inversePrimary,
           ),
@@ -27,7 +27,7 @@ class SectionViewAll extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12,
                   color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               const Icon(Icons.arrow_right)

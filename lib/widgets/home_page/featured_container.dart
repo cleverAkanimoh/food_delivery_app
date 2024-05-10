@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import '../section_view_all.dart';
 
 class FeaturedContainer extends StatefulWidget {
+  final String heading;
+  final void Function()? viewAll;
   const FeaturedContainer({
     super.key,
+    required this.heading,
+    required this.viewAll,
   });
 
   @override
@@ -11,6 +15,8 @@ class FeaturedContainer extends StatefulWidget {
 }
 
 class _FeaturedContainerState extends State<FeaturedContainer> {
+  // bool _isFavorited = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,21 +24,38 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
       child: Column(
         children: [
           SectionViewAll(
-            heading: "Featured products",
-            onTap: () {},
+            heading: widget.heading,
+            onTap: widget.viewAll,
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: 250,
+            height: 280,
             child: Expanded(
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  featuredCard("Iphone 6s", 80000, 2),
-                  featuredCard("Hp Inspiron 15", 100000, 5),
-                  featuredCard("Iphone 11", 350000, 4),
-                  featuredCard("Dell Latitude E7470", 300000, 8),
-                  featuredCard("Apple Airpods", 350000, 2),
+                  featuredCard(
+                    "assets/images/for_sale_2.avif",
+                    "Apple watch pro",
+                    80000,
+                    2,
+                  ),
+                  featuredCard(
+                      "assets/images/gadget.avif", "Hp Inspiron 15", 100000, 5),
+                  featuredCard(
+                    "assets/images/for_sale_1.avif",
+                    "Iphone 11",
+                    350000,
+                    4,
+                  ),
+                  featuredCard("assets/images/gadget.avif",
+                      "Dell Latitude E7470", 300000, 8),
+                  featuredCard(
+                    "assets/images/for_sale_1.avif",
+                    "Apple Airpods",
+                    350000,
+                    2,
+                  ),
                 ],
               ),
             ),
@@ -42,35 +65,28 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
     );
   }
 
-  Container featuredCard(String title, int price, int left) {
+  Container featuredCard(
+    String image,
+    String title,
+    int price,
+    int left,
+  ) {
     return Container(
-      margin: const EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 10),
+      padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(15)),
+          color: Theme.of(context).colorScheme.tertiary,
+          borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
-          Stack(
-            children: [
-              Positioned(
-                right: 2,
-                top: 2,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.favorite_outline,
-                    color: Theme.of(context).colorScheme.primary,
-                    size: 24,
-                  ),
-                ),
+          SizedBox(
+            width: 150,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                image,
               ),
-              Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(42, 238, 238, 238),
-                    borderRadius: BorderRadius.circular(15)),
-              )
-            ],
+            ),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
@@ -86,19 +102,19 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: "NGN$price ",
+                    text: "NGN $price ",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 18,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                     children: [
                       TextSpan(
                           text: "$left units left",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.primary,
                             fontSize: 12,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w200,
                           )),
                     ],
                   ),

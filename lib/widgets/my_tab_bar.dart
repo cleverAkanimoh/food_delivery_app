@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/food.dart';
+import '../models/meals/food.dart';
 
 class MyTabBar extends StatelessWidget {
   final TabController tabController;

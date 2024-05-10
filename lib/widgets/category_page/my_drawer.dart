@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/widgets/home_page/my_drawer_tile.dart';
+import 'package:food_delivery_app/widgets/category_page/my_drawer_tile.dart';
 
 import '../../pages/settings_page.dart';
 import '../../services/auth/auth_service.dart';
@@ -33,12 +33,12 @@ class MyDrawer extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
-          MyDrawerTile(
+          DrawerTile(
             text: "H O M E",
             icon: Icons.home,
             onTap: () => Navigator.pop(context),
           ),
-          MyDrawerTile(
+          DrawerTile(
             text: "S E T T I N G S",
             icon: Icons.settings,
             onTap: () {
@@ -52,7 +52,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
           const Spacer(),
-          MyDrawerTile(
+          DrawerTile(
             text: "L O G O U T ",
             icon: Icons.power_settings_new,
             onTap: logout,

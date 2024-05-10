@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/pages/home_page.dart';
+import 'package:food_delivery_app/pages/category_page.dart';
 import '/models/restaurant.dart';
 import '/services/database/firestore.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +44,9 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (builder) => const HomePage(),
+                    builder: (builder) => const CategoryPage(
+                      category: 'meals',
+                    ),
                   ),
                 ),
                 child: const Text("Go back Home"),

@@ -1,47 +1,48 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/themes/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/widgets.dart';
+import '../services/auth/auth_service.dart';
+import '../widgets/settings_page/dark_mode_list_tile.dart';
+import '/widgets/settings_page/settings_container.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
+  void logout() {
+    //  get instance of auth service
+    final authService = AuthService();
+    authService.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("settings"),
-        backgroundColor: Theme.of(context).colorScheme.background,
-      ),
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Column(
+    return SafeArea(
+      child: ListView(
         children: [
-          Container(
-            padding: const EdgeInsets.all(25),
-            margin: const EdgeInsets.only(left: 25, top: 10, right: 25),
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(12)),
+          const SettingsContainer(
+            child: DarkModeListTile(),
+          ),
+          const SizedBox(height: 20),
+          GestureDetector(
+            onTap: logout,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Dark Mode",
+                  "logout",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w200,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                CupertinoSwitch(
-                  value: Provider.of<ThemeProvider>(context, listen: false)
-                      .isDarkMode,
-                  onChanged: (value) =>
-                      Provider.of<ThemeProvider>(context, listen: false)
-                          .toggleTheme(),
-                )
+                const Icon(
+                  Icons.power_settings_new,
+                  size: 28,
+                  color: Colors.redAccent,
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

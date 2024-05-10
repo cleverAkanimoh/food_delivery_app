@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/pages/category_page.dart';
 
 class Categories extends StatefulWidget {
   const Categories({
@@ -19,17 +20,23 @@ class _CategoriesState extends State<Categories> {
           Row(
             children: [
               categoryButton(
-                "Gadget",
+                "gadget",
                 Icons.laptop_chromebook,
-                () {},
+                () {
+                  print("gadget");
+                },
               ),
+              categoryButton("meals", Icons.fastfood, () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CategoryPage(
+                        category: "meals",
+                      ),
+                    ));
+              }),
               categoryButton(
-                "Meals",
-                Icons.fastfood,
-                () {},
-              ),
-              categoryButton(
-                "Delivery",
+                "delivery",
                 Icons.motorcycle,
                 () {},
               ),
@@ -45,7 +52,7 @@ class _CategoriesState extends State<Categories> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: MediaQuery.of(context).size.width / 3.87,
+        width: MediaQuery.of(context).size.width / 3.9,
         height: 100,
         margin: const EdgeInsets.only(right: 15),
         decoration: BoxDecoration(

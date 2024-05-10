@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/pages/notification_page.dart';
+import 'package:food_delivery_app/widgets/category_page/my_current_location.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
@@ -8,7 +10,6 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
       alignment: Alignment.bottomCenter,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Row(
@@ -21,35 +22,26 @@ class HomeHeader extends StatelessWidget {
               Text(
                 "Hello, Clever Akanimoh",
                 style: TextStyle(
-                  // fontFamily: "SchibstedGrotesk",
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
-              GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Text(
-                      "155 aka rd, uyo, Akwa ibom state",
-                      style: TextStyle(
-                        // fontFamily: "SchibstedGrotesk",
-                        fontSize: 12,
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              MyCurrentLocation(),
             ],
           ),
           const SizedBox(width: 10),
           Stack(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => const NotificationPage()),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.notifications_outlined,
                   color: Colors.black,

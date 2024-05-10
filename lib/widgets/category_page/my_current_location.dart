@@ -39,35 +39,22 @@ class MyCurrentLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(25),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () => openLocationSearchBox(context),
+      child: Row(
         children: [
-          Text(
-            "Deliver now!",
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
-          GestureDetector(
-            onTap: () => openLocationSearchBox(context),
-            child: Row(
-              children: [
-                Consumer<Restaurant>(builder: (context, restaurant, child) {
-                  return Text(
-                    restaurant.deliveryAddress,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                }),
-                const Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                )
-              ],
-            ),
+          Consumer<Restaurant>(builder: (context, restaurant, child) {
+            return Text(
+              restaurant.deliveryAddress,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          }),
+          Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: Theme.of(context).colorScheme.primary,
           )
         ],
       ),

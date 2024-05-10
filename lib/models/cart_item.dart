@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/models/food.dart';
+import 'package:food_delivery_app/models/meals/food.dart';
 
 class CartItem {
   Food food;
