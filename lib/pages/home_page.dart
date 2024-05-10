@@ -9,17 +9,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const HomeHeader(),
-        const ProductCarousel(),
-        const Categories(),
-        FeaturedContainer(
-          heading: "Featured products",
-          viewAll: () {},
-        ),
-        FeaturedContainer(heading: "Featured stores", viewAll: () {}),
-      ],
+    return SafeArea(
+      child: ListView(
+        children: [
+          const HomeHeader(),
+          const ProductCarousel(),
+          const Categories(),
+          FeaturedContainer(
+            heading: "Featured products",
+            viewAll: () {},
+          ),
+          // FeaturedContainer(heading: "Featured stores", viewAll: () {}),
+        ],
+      ),
     );
   }
 }
