@@ -83,19 +83,23 @@ class _LayoutState extends State<Layout> {
                             Icons.favorite,
                           ),
                           Transform.translate(
-                            offset: const Offset(0, -18),
+                            offset: const Offset(0, -16),
                             child: Container(
-                              width: 65,
-                              height: 65,
+                              width: 70,
+                              height: 70,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.primary,
                                 shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 5,
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
-                                    spreadRadius: 5,
-                                    blurRadius: 5,
+                                    color: Colors.grey.withOpacity(.15),
+                                    spreadRadius: 1,
+                                    blurRadius: 1,
+                                    offset: const Offset(0, -5),
                                   ),
                                 ],
                               ),

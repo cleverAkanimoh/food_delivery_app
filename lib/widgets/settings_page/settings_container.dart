@@ -19,13 +19,13 @@ class SettingsContainer extends StatelessWidget {
           Text(
             heading,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w300,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
             margin: const EdgeInsets.only(top: 10),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
