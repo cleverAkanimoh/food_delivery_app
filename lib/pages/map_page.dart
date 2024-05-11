@@ -15,19 +15,23 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: const Text("Your location"),
+      ),
       body: GoogleMap(
         initialCameraPosition: const CameraPosition(
           target: _pGoogleplex,
           zoom: 13,
         ),
         markers: {
-           const Marker(
+          const Marker(
             markerId: MarkerId("_currentLocation"),
             icon: BitmapDescriptor.defaultMarker,
             position: _pGoogleplex,
           ),
-           const Marker(
-            markerId: MarkerId("_currentLocation"),
+          const Marker(
+            markerId: MarkerId("_otherLocation"),
             icon: BitmapDescriptor.defaultMarker,
             position: _pApplepark,
           ),
