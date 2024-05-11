@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class MapPage extends StatefulWidget {
   final bool? isTrackOrder;
+
   const MapPage({
     super.key,
     this.isTrackOrder = false,
@@ -13,13 +18,19 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  static const LatLng _pGoogleplex = LatLng(37.4223, -122.0848);
-  static const LatLng _pApplepark = LatLng(37.3346, -122.0090);
+  final Completer<GoogleMapController> _controller = Completer();
+
+  static const LatLng sourceLocation = LatLng(37.4223, -122.0848);
+  static const LatLng destination = LatLng(37.3346, -122.0090);
 
   List<LatLng> polylineCoordinates = [];
   LocationData? currentLocation;
 
-  void getCurrentLocation() {
+  BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
+
+  void getCurrentLocation() async {
     Location location = Location();
 
     location.getLocation().then(
@@ -27,18 +38,39 @@ class _MapPageState extends State<MapPage> {
         currentLocation = location;
       },
     );
+
+    GoogleMapController googleMapController = await _controller.future;
+
+    location.onLocationChanged.listen(
+      (newLocation) {
+        currentLocation = newLocation;
+
+        googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+          CameraPosition(
+            zoom: 13.5,
+            target: LatLng(
+              newLocation.latitude!,
+              newLocation.longitude!,
+            ),
+          ),
+        ));
+
+        setState(() {});
+      },
+    );
   }
 
   void getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
 
-    PolylineResult result = await polylinePoints(
-      getRoutesBetweenCoordinates.google_api_key,
-      PointLatLang(sourceLocation.latitude, sourceLocation.longitude),
-      PointLatLang(destination.latitude, destination.longitude),
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      "AIzaSyB7z29ShdZXJaWiDWauMX7Iav0GQkMBsYU",
+      PointLatLng(sourceLocation.latitude, sourceLocation.longitude),
+      PointLatLng(destination.latitude, destination.longitude),
     );
-    if (results.points.isNotEmpty) {
-      results.points.forEach(
+
+    if (result.points.isNotEmpty) {
+      result.points.forEach(
         (PointLatLng point) => polylineCoordinates.add(
           LatLng(point.latitude, point.longitude),
         ),
@@ -47,8 +79,13 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  void setCustomMarkerIcon() {
+    BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, "assets/images/",);
+  }
+
   @override
   void initState() {
+    setCustomMarkerIcon();
     getCurrentLocation();
     getPolyPoints();
     super.initState();
@@ -80,7 +117,7 @@ class _MapPageState extends State<MapPage> {
               ),
               polylines: {
                 Polyline(
-                  polylineId: PolylineId("route"),
+                  polylineId: const PolylineId("route"),
                   points: polylineCoordinates,
                   color: Theme.of(context).colorScheme.secondary,
                   width: 5,
@@ -98,13 +135,16 @@ class _MapPageState extends State<MapPage> {
                 const Marker(
                   markerId: MarkerId("source"),
                   icon: BitmapDescriptor.defaultMarker,
-                  position: _pGoogleplex,
+                  position: sourceLocation,
                 ),
                 const Marker(
                   markerId: MarkerId("destination"),
                   icon: BitmapDescriptor.defaultMarker,
-                  position: _pApplepark,
+                  position: destination,
                 ),
+              },
+              onMapCreated: (mapController) {
+                _controller.complete(mapController);
               },
             ),
     );
