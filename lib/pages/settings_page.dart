@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/layout.dart';
-import 'package:food_delivery_app/pages/home_page.dart';
 import 'package:food_delivery_app/widgets/settings_page/logout_widget.dart';
 import '/widgets/settings_page/settings_custom_tile.dart';
 import '/widgets/settings_page/dark_mode_list_tile.dart';
