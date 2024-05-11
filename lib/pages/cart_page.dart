@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/widgets/home_button.dart';
 import '/models/restaurant.dart';
-import 'category_page.dart';
-import '/pages/payment_page.dart';
 import '/widgets/cart_page/my_cart_tile.dart';
 import '/widgets/my_button.dart';
 import 'package:provider/provider.dart';
+
+import 'payment_page.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
