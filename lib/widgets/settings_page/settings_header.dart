@@ -9,7 +9,6 @@ class SettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(25),
-      margin: const EdgeInsets.only(bottom: 15),
       color: Theme.of(context).colorScheme.tertiary,
       child: Row(
         children: [
