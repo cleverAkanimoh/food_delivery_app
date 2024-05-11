@@ -80,13 +80,27 @@ class _MapPageState extends State<MapPage> {
   }
 
   void setCustomMarkerIcon() {
-    BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, "assets/images/",);
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, "assets/map/pin_blue.jpg")
+        .then((icon) {
+      sourceIcon = icon;
+    });
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, "assets/map/pin_red.jpg")
+        .then((icon) {
+      destinationIcon = icon;
+    });
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, "assets/map/pin_future.jpg")
+        .then((icon) {
+      currentLocationIcon = icon;
+    });
   }
 
   @override
   void initState() {
-    setCustomMarkerIcon();
     getCurrentLocation();
+    setCustomMarkerIcon();
     getPolyPoints();
     super.initState();
   }
@@ -126,20 +140,20 @@ class _MapPageState extends State<MapPage> {
               markers: {
                 Marker(
                   markerId: const MarkerId("currentLocation"),
-                  icon: BitmapDescriptor.defaultMarker,
+                  icon: currentLocationIcon,
                   position: LatLng(
                     currentLocation!.latitude!,
                     currentLocation!.longitude!,
                   ),
                 ),
-                const Marker(
-                  markerId: MarkerId("source"),
-                  icon: BitmapDescriptor.defaultMarker,
+                Marker(
+                  markerId: const MarkerId("source"),
+                  icon: sourceIcon,
                   position: sourceLocation,
                 ),
-                const Marker(
-                  markerId: MarkerId("destination"),
-                  icon: BitmapDescriptor.defaultMarker,
+                Marker(
+                  markerId: const MarkerId("destination"),
+                  icon: destinationIcon,
                   position: destination,
                 ),
               },
