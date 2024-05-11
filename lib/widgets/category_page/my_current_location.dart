@@ -41,14 +41,14 @@ class MyCurrentLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => {
+      onTap: () {
         // openLocationSearchBox(context)
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const MapPage(),
           ),
-        )
+        );
       },
       child: Row(
         children: [
