@@ -5,6 +5,12 @@ buildscript {
         mavenCentral()
     }
 
+        dependencies {
+        classpath 'com.android.tools.build:7.3.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+
+
 }
 
 allprojects {
