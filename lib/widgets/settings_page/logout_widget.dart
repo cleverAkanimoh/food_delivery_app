@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '/services/auth/auth_service.dart';
 
 class LogoutWidget extends StatelessWidget {
