@@ -17,6 +17,7 @@ class _LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
     Widget page;
     switch (currentPage) {
       case 0:
@@ -38,14 +39,14 @@ class _LayoutState extends State<Layout> {
     // The container for the current page, with its background color
     // and subtle switching animation.
     var mainArea = ColoredBox(
-      color: Theme.of(context).colorScheme.background,
+      color: colorScheme.background,
       child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 300),
         child: page,
       ),
     );
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: colorScheme.background,
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 450) {
@@ -63,7 +64,7 @@ class _LayoutState extends State<Layout> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 0),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.tertiary,
+                        color: colorScheme.tertiary,
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Row(
@@ -88,11 +89,11 @@ class _LayoutState extends State<Layout> {
                               width: 70,
                               height: 70,
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.primary,
+                                color: colorScheme.primary,
                                 shape: BoxShape.circle,
                                 border: Border.all(
                                   width: 5,
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color: colorScheme.tertiary,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
@@ -114,7 +115,7 @@ class _LayoutState extends State<Layout> {
                                 },
                                 icon: Icon(
                                   Icons.shopping_cart_outlined,
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color: colorScheme.tertiary,
                                   size: 28,
                                 ),
                               ),

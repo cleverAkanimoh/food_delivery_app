@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/layout.dart';
+import 'package:food_delivery_app/pages/welcome_page.dart';
 import 'login_or_register.dart';
 
 class AuthGate extends StatelessWidget {
@@ -19,7 +20,7 @@ class AuthGate extends StatelessWidget {
 
           // user is NOT logged in
           else {
-            return const AuthPage();
+            return false ? const WelcomePage() : const AuthPage();
           }
         },
       ),

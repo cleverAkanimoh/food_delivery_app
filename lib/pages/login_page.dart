@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/services/auth/auth_service.dart';
@@ -50,60 +51,89 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.lock_open_rounded,
-            size: 100,
-            color: Theme.of(context).colorScheme.inversePrimary,
-          ),
-          const SizedBox(height: 25),
-          Text(
-            "Quick Delivery App",
-            style: TextStyle(
-              fontSize: 16,
-              color: Theme.of(context).colorScheme.inversePrimary,
-            ),
-          ),
-          const SizedBox(height: 25),
-          // TextField
-          MyTextField(
-            controller: emailController,
-            hintText: "Email",
-            obscureText: false,
-          ),
-          MyTextField(
-            controller: passwordController,
-            hintText: "Password",
-            obscureText: true,
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: ListView(
+                children: [
+                  Column(
+                    children: [
+                      Icon(
+                        Icons.lock_open_rounded,
+                        size: 100,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      const SizedBox(height: 25),
+                      Text(
+                        "Quick Delivery App",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 25),
+                      // TextField
+                      MyTextField(
+                        controller: emailController,
+                        hintText: "Email",
+                        obscureText: false,
+                      ),
+                      MyTextField(
+                        controller: passwordController,
+                        hintText: "Password",
+                        obscureText: true,
+                      ),
 
-          const SizedBox(height: 20),
-          MyButton(onTap: login, text: "Log in"),
-          const SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Don't have an account? ",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
-              ),
-              GestureDetector(
-                onTap: widget.onTap,
-                child: Text(
-                  "Register now",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
+                      const SizedBox(height: 20),
+                      MyButton(onTap: login, text: "Log in"),
+                      const SizedBox(height: 25),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't have an account? ",
+                            style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: widget.onTap,
+                            child: Text(
+                              "Register now",
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        child: const Text("or"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Continue with google",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-              )
-            ],
-          )
-        ],
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
