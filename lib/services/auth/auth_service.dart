@@ -27,8 +27,17 @@ class AuthService {
 
   // sign in with google
 
-  void _handleGoogleSignIn() {
-    
+  Future<UserCredential> signInWithGoogleProvider() async {
+    try {
+      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+
+      UserCredential userCredential =
+          await _firebaseAuth.signInWithProvider(googleAuthProvider);
+
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
+    }
   }
 
   // sign up

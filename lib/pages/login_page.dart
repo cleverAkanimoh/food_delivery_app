@@ -21,11 +21,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  //  get instance of auth service
+  final _authService = AuthService();
 
   void login() async {
-    //  get instance of auth service
-    final _authService = AuthService();
-
     // try sign in
     try {
       await _authService.signInWithEmailAndPassword(
@@ -38,12 +37,28 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: ((context) => AlertDialog(
+              title: Text(
+                e.toString(),
+              ),
+            )),
+      );
+    }
+  }
+
+  void loginWithGoogle() async {
+    // try sign in
+    try {
+      await _authService.signInWithGoogleProvider();
+    }
+    // display any errors
+    catch (e) {
+      showDialog(
+        context: context,
+        builder: ((context) => AlertDialog(
               title: Text(e.toString()),
             )),
       );
     }
-
-    // await any errors
   }
 
   void forgotPw() {}
@@ -77,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: whiteSpace),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: loginWithGoogle,
                         child: Text(
                           "Continue with google",
                           style: TextStyle(
