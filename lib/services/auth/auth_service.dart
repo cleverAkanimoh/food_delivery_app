@@ -25,6 +25,12 @@ class AuthService {
     }
   }
 
+  // sign in with google
+
+  void _handleGoogleSignIn() {
+    
+  }
+
   // sign up
   Future<UserCredential> signUpWithEmailAndPassword(
       String email, password) async {

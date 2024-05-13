@@ -14,7 +14,6 @@ class ThemeProvider with ChangeNotifier {
   set themeData(ThemeData themeData) {
     _themeData = themeData;
     _box.isEmpty ? _box.put("theme", "dark") : _box.delete("theme");
-    print(_box.values);
     notifyListeners();
   }
 

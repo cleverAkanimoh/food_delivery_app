@@ -1,5 +1,7 @@
 import 'package:food_delivery_app/models/meals/food.dart';
 
+// import 'gadgets/device.dart';
+
 class CartItem {
   Food food;
   List<Addon> selectedAddons;
