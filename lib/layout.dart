@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/favorite_page.dart';
 import 'pages/order_page.dart';
-import 'pages/settings_page.dart';
+import 'pages/menu_page.dart';
 import 'pages/cart_page.dart';
 import 'pages/home_page.dart';
 
@@ -53,12 +53,19 @@ class _LayoutState extends State<Layout> {
             // Use a more mobile-friendly layout with BottomNavigationBar on narrow screens.
             return Column(
               children: [
-                Expanded(child: mainArea),
+                Expanded(
+                  child: mainArea,
+                ),
                 SafeArea(
+                  bottom: false,
                   child: BottomAppBar(
                     height: 90,
                     padding: const EdgeInsets.only(
-                        left: 20, top: 1, right: 20, bottom: 20),
+                      left: 20,
+                      top: 1,
+                      right: 20,
+                      bottom: 20,
+                    ),
                     color: Colors.transparent,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -97,10 +104,10 @@ class _LayoutState extends State<Layout> {
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(.15),
+                                    color: Colors.grey.withOpacity(0.05),
                                     spreadRadius: 1,
                                     blurRadius: 1,
-                                    offset: const Offset(0, -5),
+                                    offset: const Offset(0, -4),
                                   ),
                                 ],
                               ),

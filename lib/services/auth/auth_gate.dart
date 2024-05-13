@@ -1,8 +1,8 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/layout.dart';
-import 'package:food_delivery_app/pages/welcome_page.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import '/layout.dart';
+import '/pages/welcome_page.dart';
 import 'login_or_register.dart';
 
 class AuthGate extends StatefulWidget {
@@ -29,6 +29,7 @@ class _AuthGateState extends State<AuthGate> {
 
           // user is a first timer
           if (_box.get("first_timer") == null) {
+            _box.put("first_timer", true);
             return const WelcomePage();
           }
 
