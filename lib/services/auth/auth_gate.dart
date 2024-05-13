@@ -16,15 +16,6 @@ class _AuthGateState extends State<AuthGate> {
   // reference hive box for local storage
   final _box = Hive.box("box");
 
-  bool checkBoxForFirstTimer() {
-    if (_box.get("first_timer")) {
-      return true;
-    } else {
-      _box.put("first_timer", true);
-      return false;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +27,14 @@ class _AuthGateState extends State<AuthGate> {
             return const Layout();
           }
 
+          // user is a first timer
+          if (_box.get("first_timer") == null) {
+            return const WelcomePage();
+          }
+
           // user is NOT logged in
           else {
-            return checkBoxForFirstTimer()
-                ? const AuthPage()
-                : const WelcomePage();
+            return const AuthPage();
           }
         },
       ),
