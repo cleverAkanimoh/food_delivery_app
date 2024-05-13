@@ -15,11 +15,8 @@ class HomePage extends StatelessWidget {
           HomeHeader(),
           const ProductCarousel(),
           const Categories(),
-          FeaturedContainer(
-            heading: "Featured products",
-            viewAll: () {},
-          ),
-          // FeaturedContainer(heading: "Featured stores", viewAll: () {}),
+          FeaturedContainer(heading: "Featured products", viewAll: () {}),
+          FeaturedContainer(heading: "Featured stores", viewAll: () {}),
         ],
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/services/auth/auth_service.dart';
 import 'pages/favorite_page.dart';
 import 'pages/order_page.dart';
 import 'pages/menu_page.dart';
@@ -31,7 +30,7 @@ class _LayoutState extends State<Layout> {
         page = const OrderPage();
         break;
       case 3:
-        page = const SettingsPage();
+        page = const MenuPage();
         break;
       default:
         throw UnimplementedError('no widget for $currentPage');

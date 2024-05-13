@@ -22,9 +22,7 @@ class _CategoriesState extends State<Categories> {
               categoryButton(
                 "gadget",
                 Icons.laptop_chromebook,
-                () {
-                  print("gadget");
-                },
+                () {},
               ),
               categoryButton("meals", Icons.fastfood, () {
                 Navigator.push(
@@ -62,12 +60,12 @@ class _CategoriesState extends State<Categories> {
               width: 1,
             ),
             borderRadius: BorderRadius.circular(8),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: Color.fromARGB(128, 189, 189, 189),
-                blurRadius: 4,
-                spreadRadius: 4,
-              )
+                color: Colors.grey.withOpacity(0.25),
+                spreadRadius: 1,
+                blurRadius: 1,
+              ),
             ]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

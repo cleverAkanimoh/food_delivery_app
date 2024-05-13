@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import '/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class DarkModeListTile extends StatelessWidget {
+class DarkModeListTile extends StatefulWidget {
   const DarkModeListTile({
     super.key,
   });
 
+  @override
+  State<DarkModeListTile> createState() => _DarkModeListTileState();
+}
+
+class _DarkModeListTileState extends State<DarkModeListTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(

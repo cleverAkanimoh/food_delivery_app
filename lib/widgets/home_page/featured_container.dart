@@ -15,49 +15,52 @@ class FeaturedContainer extends StatefulWidget {
 }
 
 class _FeaturedContainerState extends State<FeaturedContainer> {
-  // bool _isFavorited = false;
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: [
           SectionViewAll(
             heading: widget.heading,
             onTap: widget.viewAll,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
           SizedBox(
             height: 280,
-            child: Expanded(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  featuredCard(
-                    "assets/images/for_sale_2.avif",
-                    "Apple watch pro",
-                    80000,
-                    2,
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      featuredCard(
+                        "assets/images/for_sale_2.avif",
+                        "Apple watch pro",
+                        80000,
+                        2,
+                      ),
+                      featuredCard("assets/images/gadget.avif",
+                          "Hp Inspiron 15", 100000, 5),
+                      featuredCard(
+                        "assets/images/for_sale_1.avif",
+                        "Iphone 11",
+                        350000,
+                        4,
+                      ),
+                      featuredCard("assets/images/gadget.avif",
+                          "Dell Latitude E7470", 300000, 8),
+                      featuredCard(
+                        "assets/images/for_sale_1.avif",
+                        "Apple Airpods",
+                        350000,
+                        2,
+                      ),
+                    ],
                   ),
-                  featuredCard(
-                      "assets/images/gadget.avif", "Hp Inspiron 15", 100000, 5),
-                  featuredCard(
-                    "assets/images/for_sale_1.avif",
-                    "Iphone 11",
-                    350000,
-                    4,
-                  ),
-                  featuredCard("assets/images/gadget.avif",
-                      "Dell Latitude E7470", 300000, 8),
-                  featuredCard(
-                    "assets/images/for_sale_1.avif",
-                    "Apple Airpods",
-                    350000,
-                    2,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           )
         ],
@@ -81,10 +84,12 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
         children: [
           SizedBox(
             width: 150,
+            height: 175,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 image,
+                width: 150,
               ),
             ),
           ),

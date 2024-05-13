@@ -7,8 +7,8 @@ import '/widgets/settings_page/settings_custom_tile.dart';
 import '/widgets/settings_page/settings_header.dart';
 import '/widgets/settings_page/settings_container.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class MenuPage extends StatelessWidget {
+  const MenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {

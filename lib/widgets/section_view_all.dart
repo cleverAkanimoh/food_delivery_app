@@ -7,34 +7,37 @@ class SectionViewAll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          heading!,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.inversePrimary,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            heading!,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
           ),
-        ),
-        GestureDetector(
-          onTap: onTap,
-          child: Row(
-            children: [
-              Text(
-                "View all",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w400,
+          GestureDetector(
+            onTap: onTap,
+            child: Row(
+              children: [
+                Text(
+                  "View all",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
-              ),
-              const Icon(Icons.arrow_right)
-            ],
-          ),
-        )
-      ],
+                const Icon(Icons.arrow_right)
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
