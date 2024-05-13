@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/services/auth/auth_service.dart';
 import 'pages/favorite_page.dart';
 import 'pages/order_page.dart';
 import 'pages/menu_page.dart';

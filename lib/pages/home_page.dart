@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: ListView(
         children: [
-          const HomeHeader(),
+          HomeHeader(),
           const ProductCarousel(),
           const Categories(),
           FeaturedContainer(

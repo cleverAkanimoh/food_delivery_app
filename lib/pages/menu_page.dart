@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/constants.dart';
-import 'package:food_delivery_app/layout.dart';
-import 'package:food_delivery_app/widgets/settings_page/logout_widget.dart';
+import '/constants.dart';
+import '/layout.dart';
+import '/pages/map_page.dart';
+import '/pages/profile_page.dart';
 import '/widgets/settings_page/settings_custom_tile.dart';
-import '/widgets/settings_page/dark_mode_list_tile.dart';
 import '/widgets/settings_page/settings_header.dart';
 import '/widgets/settings_page/settings_container.dart';
 
@@ -14,7 +14,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SettingsHeader(),
+        SettingsHeader(),
         Expanded(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -25,12 +25,12 @@ class SettingsPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SettingsCustomTile(
-                      moveTo: Layout(),
+                      moveTo: ProfilePage(),
                       label: 'Profile',
                       icon: Icons.person,
                     ),
                     SettingsCustomTile(
-                      moveTo: Layout(),
+                      moveTo: MapPage(),
                       label: 'My Address',
                       icon: Icons.location_city_outlined,
                     ),

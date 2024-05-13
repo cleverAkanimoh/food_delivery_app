@@ -3,10 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/pages/profile_page.dart';
 import 'package:food_delivery_app/pages/settings_page.dart';
 
+import '../../services/auth/auth_service.dart';
+
 class SettingsHeader extends StatelessWidget {
-  const SettingsHeader({
+  SettingsHeader({
     super.key,
   });
+
+  final user = AuthService().getCurrentUser();
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +45,31 @@ class SettingsHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "Clever Akanimoh",
+                        user!.displayName ?? "Username",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ),
-                      Text(
-                        "crushclever1@gmail.com",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).colorScheme.primary,
+                      RichText(
+                        text: TextSpan(
+                          text: user!.email ?? "user email",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          children: [
+                            TextSpan(
+                                text: "(${user!.emailVerified})",
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ],
                         ),
                       ),
                     ],

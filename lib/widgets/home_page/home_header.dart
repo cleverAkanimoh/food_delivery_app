@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/pages/notification_page.dart';
 import 'package:food_delivery_app/widgets/category_page/my_current_location.dart';
 
+import '../../services/auth/auth_service.dart';
+
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({
-    super.key,
-  });
+  HomeHeader({super.key});
+
+  final user = AuthService().getCurrentUser();
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,18 @@ class HomeHeader extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Hello, Clever Akanimoh",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.inversePrimary,
-                ),
+              Wrap(
+                clipBehavior: Clip.hardEdge,
+                children: [
+                  Text(
+                    "Hello, ${user!.displayName ?? "Username"}",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ),
+                ],
               ),
               MyCurrentLocation(),
             ],

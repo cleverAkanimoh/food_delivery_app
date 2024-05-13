@@ -28,7 +28,7 @@ class _AuthGateState extends State<AuthGate> {
           }
 
           // user is a first timer
-          if (_box.get("first_timer") == null) {
+          if (_box.get("first_timer")) {
             _box.put("first_timer", true);
             return const WelcomePage();
           }
