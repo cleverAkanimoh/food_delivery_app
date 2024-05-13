@@ -69,7 +69,9 @@ class _LayoutState extends State<Layout> {
                     color: Colors.transparent,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 0),
+                        horizontal: 20,
+                        vertical: 0,
+                      ),
                       decoration: BoxDecoration(
                         color: colorScheme.tertiary,
                         borderRadius: BorderRadius.circular(50),
