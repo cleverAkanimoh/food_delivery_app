@@ -89,4 +89,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'flutter-social-login-2e09c.appspot.com',
     measurementId: 'G-6GVE6MR5LW',
   );
+
 }

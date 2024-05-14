@@ -60,4 +60,14 @@ class AuthService {
   Future<void> signOut() async {
     return await _firebaseAuth.signOut();
   }
+
+  // delete user
+  Future<void> deleteUser() async {
+    return await _firebaseAuth.signOut();
+  }
+
+  // sign out
+  Future<void> forgotPassword() async {
+    return await _firebaseAuth.signOut();
+  }
 }

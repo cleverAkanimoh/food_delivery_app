@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "150600351745-27et5an5utofq74aeopc2s5699ojqips.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.flutter_social_login",
-            "certificate_hash": "fa2b6def344d2058a34efe31ed4b84953fc849f6"
-          }
-        },
-        {
           "client_id": "150600351745-46agtjkj04nojhtocbn26v5v48op2p5o.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -39,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "150600351745-l1ro6ue93i108tto8o6gkakrlu2s9l54.apps.googleusercontent.com",
+              "client_id": "150600351745-6taj3va8kt95mcn597bsljsfjaoi2so0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.flutterSocialLogin"
+                "bundle_id": "com.example.foodDeliveryApp"
               }
             }
           ]
@@ -75,10 +67,10 @@
               "client_type": 3
             },
             {
-              "client_id": "150600351745-l1ro6ue93i108tto8o6gkakrlu2s9l54.apps.googleusercontent.com",
+              "client_id": "150600351745-6taj3va8kt95mcn597bsljsfjaoi2so0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.flutterSocialLogin"
+                "bundle_id": "com.example.foodDeliveryApp"
               }
             }
           ]
