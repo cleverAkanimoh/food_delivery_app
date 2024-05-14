@@ -45,8 +45,11 @@ class AuthService {
       String email, password) async {
     try {
       // try signing in a user.
-      UserCredential userCredential = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       return userCredential;
     }

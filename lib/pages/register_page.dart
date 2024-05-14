@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '/services/auth/auth_service.dart';
@@ -21,6 +23,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  String errorMsg = "";
+
   // register function
   void register() async {
     // get auth service
@@ -37,23 +41,38 @@ class _RegisterPageState extends State<RegisterPage> {
       }
       // display any error
       catch (e) {
-        showDialog(
-          context: context,
-          builder: ((context) => AlertDialog(
-                title: Text(e.toString()),
-              )),
-        );
+        var err = e.toString();
+        if (err.contains("network-request-failed")) {
+          setState(() {
+            errorMsg = "Please check your network";
+          });
+        } else if (err.contains("channel-error")) {
+          setState(() {
+            errorMsg = "Invalid Credentials";
+          });
+        } else {
+          setState(() {
+            errorMsg = "An Unknown Error Occurred";
+          });
+        }
+        Timer(const Duration(seconds: 5), () {
+          setState(() {
+            errorMsg = "";
+          });
+        });
       }
     }
 
     // check if password != match -> show error
     else {
-      showDialog(
-        context: context,
-        builder: ((context) => const AlertDialog(
-              title: Text("Passwords don't match"),
-            )),
-      );
+      setState(() {
+        errorMsg = "Passwords don't match";
+      });
+      Timer(const Duration(seconds: 5), () {
+        setState(() {
+          errorMsg = "";
+        });
+      });
     }
   }
 
@@ -91,16 +110,37 @@ class _RegisterPageState extends State<RegisterPage> {
                           controller: emailController,
                           hintText: "Email",
                           obscureText: false,
+                          icon: Icons.alternate_email,
                         ),
                         MyTextField(
                           controller: passwordController,
                           hintText: "Password",
                           obscureText: true,
+                          icon: Icons.key,
                         ),
                         MyTextField(
                           controller: confirmPasswordController,
                           hintText: "Confirm Password",
                           obscureText: true,
+                          icon: Icons.key,
+                        ),
+
+                        AnimatedContainer(
+                          duration: Durations.medium4,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                          ),
+                          height: errorMsg == "" ? 0 : 40,
+                          child: Row(
+                            children: [
+                              Text(
+                                errorMsg,
+                                style: const TextStyle(
+                                  color: Colors.redAccent,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
 
                         const SizedBox(height: whiteSpace),

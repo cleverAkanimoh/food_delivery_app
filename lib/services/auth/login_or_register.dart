@@ -22,10 +22,11 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (showLoginPage) {
-      return LoginPage(onTap: togglePages);
-    } else {
-      return RegisterPage(onTap: togglePages);
-    }
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: showLoginPage
+          ? LoginPage(onTap: togglePages)
+          : RegisterPage(onTap: togglePages),
+    );
   }
 }

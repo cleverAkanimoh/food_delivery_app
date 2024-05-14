@@ -1,6 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/services/auth/auth_service.dart';
 import '/widgets/auth/my_text_field.dart';
@@ -21,6 +24,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  String errorMsg = "";
+
   //  get instance of auth service
   final _authService = AuthService();
 
@@ -34,14 +40,25 @@ class _LoginPageState extends State<LoginPage> {
     }
     // display any errors
     catch (e) {
-      showDialog(
-        context: context,
-        builder: ((context) => AlertDialog(
-              title: Text(
-                e.toString(),
-              ),
-            )),
-      );
+      var err = e.toString();
+      if (err.contains("network-request-failed")) {
+        setState(() {
+          errorMsg = "Please check your network";
+        });
+      } else if (err.contains("channel-error")) {
+        setState(() {
+          errorMsg = "Invalid Credentials";
+        });
+      } else {
+        setState(() {
+          errorMsg = "An Unknown Error Occurred";
+        });
+      }
+      Timer(const Duration(seconds: 5), () {
+        setState(() {
+          errorMsg = "";
+        });
+      });
     }
   }
 
@@ -106,11 +123,31 @@ class _LoginPageState extends State<LoginPage> {
                         controller: emailController,
                         hintText: "Email",
                         obscureText: false,
+                        icon: Icons.alternate_email,
                       ),
                       MyTextField(
                         controller: passwordController,
                         hintText: "Password",
                         obscureText: true,
+                        icon: Icons.key,
+                      ),
+
+                      AnimatedContainer(
+                        duration: Durations.medium4,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 25,
+                        ),
+                        height: errorMsg == "" ? 0 : 40,
+                        child: Row(
+                          children: [
+                            Text(
+                              errorMsg,
+                              style: const TextStyle(
+                                color: Colors.redAccent,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
                       const SizedBox(height: whiteSpace),
