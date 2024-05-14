@@ -10,10 +10,6 @@ import 'themes/theme_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  await Hive.initFlutter();
-  // open hive box
-  var box = await Hive.openBox("box");
   runApp(
     MultiProvider(
       providers: [

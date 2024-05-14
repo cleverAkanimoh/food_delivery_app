@@ -1,8 +1,7 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '/layout.dart';
-import '/pages/welcome_page.dart';
+// import '/pages/welcome_page.dart';
 import 'login_or_register.dart';
 
 class AuthGate extends StatefulWidget {
@@ -13,9 +12,6 @@ class AuthGate extends StatefulWidget {
 }
 
 class _AuthGateState extends State<AuthGate> {
-  // reference hive box for local storage
-  final _box = Hive.box("box");
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +24,10 @@ class _AuthGateState extends State<AuthGate> {
           }
 
           // user is a first timer
-          if (_box.get("first_timer") == null) {
-            _box.put("first_timer", "false");
-            return const WelcomePage();
-          }
+          // if (_box.get("first_timer") == null) {
+          //   _box.put("first_timer", "false");
+          //   return const WelcomePage();
+          // }
 
           // user is NOT logged in
           else {
