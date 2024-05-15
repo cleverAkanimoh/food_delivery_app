@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
-import '../widgets/settings_page/dark_mode_list_tile.dart';
 import '../widgets/settings_page/logout_widget.dart';
 import '../widgets/settings_page/settings_container.dart';
 
