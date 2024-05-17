@@ -3,8 +3,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/constants.dart';
+import 'package:food_delivery_app/pages/forgot_password_page.dart';
 import 'package:food_delivery_app/services/auth/auth_service.dart';
 import '/widgets/auth/my_text_field.dart';
 import '/widgets/my_button.dart';
@@ -78,7 +78,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void forgotPw() {}
 
   @override
   Widget build(BuildContext context) {
@@ -89,106 +88,110 @@ class _LoginPageState extends State<LoginPage> {
           return Center(
             child: SizedBox(
               width: constraint.maxWidth > mobileWidth ? 480 : null,
-              child: ListView(
-                children: [
-                  Column(
-                    children: [
-                      const SizedBox(height: largeWhiteSpace),
-                      Icon(
-                        Icons.lock_open_rounded,
-                        size: 100,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: largeWhiteSpace),
+                    Icon(
+                      Icons.lock_open_rounded,
+                      size: 100,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                    const SizedBox(height: whiteSpace),
+                    Text(
+                      "Quick Delivery App",
+                      style: TextStyle(
+                        fontSize: 16,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
-                      const SizedBox(height: whiteSpace),
-                      Text(
-                        "Quick Delivery App",
+                    ),
+                    const SizedBox(height: whiteSpace),
+                    TextButton(
+                      onPressed: loginWithGoogle,
+                      child: Text(
+                        "Continue with google",
                         style: TextStyle(
-                          fontSize: 16,
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ),
-                      const SizedBox(height: whiteSpace),
-                      TextButton(
-                        onPressed: loginWithGoogle,
-                        child: Text(
-                          "Continue with google",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.inversePrimary,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: whiteSpace),
-                      // TextField
-                      MyTextField(
-                        controller: emailController,
-                        hintText: "Email",
-                        obscureText: false,
-                        icon: Icons.alternate_email,
-                      ),
-                      MyTextField(
-                        controller: passwordController,
-                        hintText: "Password",
-                        obscureText: true,
-                        icon: Icons.key,
-                      ),
+                    ),
+                    const SizedBox(height: whiteSpace),
+                    // TextField
+                    MyTextField(
+                      controller: emailController,
+                      hintText: "Email",
+                      obscureText: false,
+                      icon: Icons.alternate_email,
+                    ),
+                    MyTextField(
+                      controller: passwordController,
+                      hintText: "Password",
+                      obscureText: true,
+                      icon: Icons.key,
+                    ),
 
-                      AnimatedContainer(
-                        duration: Durations.medium4,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                        ),
-                        height: errorMsg == "" ? 0 : 40,
-                        child: Row(
-                          children: [
-                            Text(
-                              errorMsg,
-                              style: const TextStyle(
-                                color: Colors.redAccent,
-                              ),
+                    AnimatedContainer(
+                      duration: Durations.medium4,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                      ),
+                      height: errorMsg == "" ? 0 : 40,
+                      child: Row(
+                        children: [
+                          Text(
+                            errorMsg,
+                            style: const TextStyle(
+                              color: Colors.redAccent,
                             ),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: whiteSpace),
-                      MyButton(onTap: login, text: "Sign in"),
-                      const SizedBox(height: whiteSpace),
-                      GestureDetector(
-                        onTap: forgotPw,
-                        child: Text(
-                          "forgot password?",
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold,
                           ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: whiteSpace),
+                    MyButton(onTap: login, text: "Sign in"),
+                    const SizedBox(height: whiteSpace),
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => const ForgotPasswordPage()),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: whiteSpace),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't have an account? ",
+                      child: Text(
+                        "forgot password?",
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary,
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      GestureDetector(
-                        onTap: widget.onTap,
-                        child: Text(
-                          "Register now",
+                    ),
+                    const SizedBox(height: whiteSpace),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account? ",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.inversePrimary,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: whiteSpace),
-                ],
+                        GestureDetector(
+                          onTap: widget.onTap,
+                          child: Text(
+                            "Register now",
+                            style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: largeWhiteSpace),
+                  ],
+                ),
               ),
             ),
           );

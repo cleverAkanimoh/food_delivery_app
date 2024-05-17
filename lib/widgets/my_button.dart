@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onTap;
@@ -30,10 +31,10 @@ class MyButton extends StatelessWidget {
           GestureDetector(
             onTap: onTap,
             child: Container(
-              height: 70,
-              width: 70,
+              height: 60,
+              width: 60,
               decoration: BoxDecoration(
-                color: colorScheme.inversePrimary,
+                color: mainColor,
                 shape: BoxShape.circle,
                 border: Border.all(
                   width: 4,
@@ -41,9 +42,9 @@ class MyButton extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(.45),
-                    spreadRadius: 5,
-                    blurRadius: 5,
+                    color: Colors.grey.withOpacity(.25),
+                    spreadRadius: 2,
+                    blurRadius: 2,
                   ),
                 ],
               ),

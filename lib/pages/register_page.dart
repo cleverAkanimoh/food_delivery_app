@@ -18,6 +18,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -86,101 +87,105 @@ class _RegisterPageState extends State<RegisterPage> {
             return Center(
               child: SizedBox(
                 width: constraint.maxWidth > mobileWidth ? 480 : null,
-                child: ListView(
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(height: largeWhiteSpace),
-                        Icon(
-                          Icons.lock_open_rounded,
-                          size: 100,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: largeWhiteSpace),
+                      Icon(
+                        Icons.lock_open_rounded,
+                        size: 100,
+                        color: Theme.of(context).colorScheme.inversePrimary,
+                      ),
+                      const SizedBox(height: whiteSpace),
+                      Text(
+                        "Let's create an account for you",
+                        style: TextStyle(
+                          fontSize: 16,
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
-                        const SizedBox(height: whiteSpace),
-                        Text(
-                          "Let's create an account for you",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(context).colorScheme.inversePrimary,
-                          ),
-                        ),
-                        const SizedBox(height: whiteSpace),
-                        // TextField
-                        MyTextField(
-                          controller: emailController,
-                          hintText: "Email",
-                          obscureText: false,
-                          icon: Icons.alternate_email,
-                        ),
-                        MyTextField(
-                          controller: passwordController,
-                          hintText: "Password",
-                          obscureText: true,
-                          icon: Icons.key,
-                        ),
-                        MyTextField(
-                          controller: confirmPasswordController,
-                          hintText: "Confirm Password",
-                          obscureText: true,
-                          icon: Icons.key,
-                        ),
+                      ),
+                      const SizedBox(height: whiteSpace),
+                      // TextField
 
-                        AnimatedContainer(
-                          duration: Durations.medium4,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 25,
-                          ),
-                          height: errorMsg == "" ? 0 : 40,
-                          child: Row(
-                            children: [
-                              Text(
-                                errorMsg,
-                                style: const TextStyle(
-                                  color: Colors.redAccent,
-                                ),
-                              ),
-                            ],
-                          ),
+                      MyTextField(
+                        controller: usernameController,
+                        hintText: "Username",
+                        obscureText: false,
+                        icon: Icons.person,
+                      ),
+                      MyTextField(
+                        controller: emailController,
+                        hintText: "Email",
+                        obscureText: false,
+                        icon: Icons.alternate_email,
+                      ),
+                      MyTextField(
+                        controller: passwordController,
+                        hintText: "Password",
+                        obscureText: true,
+                        icon: Icons.key,
+                      ),
+                      MyTextField(
+                        controller: confirmPasswordController,
+                        hintText: "Confirm Password",
+                        obscureText: true,
+                        icon: Icons.key,
+                      ),
+
+                      AnimatedContainer(
+                        duration: Durations.medium4,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 25,
                         ),
-
-                        const SizedBox(height: whiteSpace),
-
-                        MyButton(
-                          onTap: register,
-                          text: "Register",
-                        ),
-
-                        const SizedBox(height: whiteSpace),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        height: errorMsg == "" ? 0 : 40,
+                        child: Row(
                           children: [
                             Text(
-                              "Already have an account? ",
+                              errorMsg,
+                              style: const TextStyle(
+                                color: Colors.redAccent,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: whiteSpace),
+
+                      MyButton(
+                        onTap: register,
+                        text: "Register",
+                      ),
+
+                      const SizedBox(height: whiteSpace),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Already have an account? ",
+                            style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: widget.onTap,
+                            child: Text(
+                              "Log in here",
                               style: TextStyle(
                                 color: Theme.of(context)
                                     .colorScheme
                                     .inversePrimary,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: widget.onTap,
-                              child: Text(
-                                "Log in here",
-                                style: TextStyle(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .inversePrimary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: largeWhiteSpace),
+                    ],
+                  ),
                 ),
               ),
             );

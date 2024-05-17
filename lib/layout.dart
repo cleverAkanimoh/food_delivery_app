@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 import 'pages/favorite_page.dart';
 import 'pages/order_page.dart';
 import 'pages/menu_page.dart';
@@ -49,7 +50,7 @@ class _LayoutState extends State<Layout> {
       backgroundColor: colorScheme.background,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth < 450) {
+          if (constraints.maxWidth < mobileWidth) {
             // Use a more mobile-friendly layout with BottomNavigationBar on narrow screens.
             return Column(
               children: [
@@ -66,7 +67,6 @@ class _LayoutState extends State<Layout> {
                       right: 20,
                       bottom: 20,
                     ),
-                    color: Colors.transparent,
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
@@ -98,7 +98,7 @@ class _LayoutState extends State<Layout> {
                               width: 70,
                               height: 70,
                               decoration: BoxDecoration(
-                                color: colorScheme.primary,
+                                color: mainColor,
                                 shape: BoxShape.circle,
                                 border: Border.all(
                                   width: 5,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/profile_page.dart';
 import 'package:food_delivery_app/pages/settings_page.dart';
 
@@ -16,8 +16,8 @@ class SettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(25),
-      height: 170,
-      color: Theme.of(context).colorScheme.tertiary,
+      height: 180,
+      color: mainColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,11 +32,13 @@ class SettingsHeader extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.person,
-                  size: 80,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                user!.photoURL != null
+                    ? Image.network(user?.photoURL ?? "")
+                    : const Icon(
+                        Icons.person,
+                        size: 80,
+                        color: Colors.white,
+                      ),
                 const SizedBox(width: 10),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -46,29 +48,25 @@ class SettingsHeader extends StatelessWidget {
                     children: [
                       Text(
                         user!.displayName ?? "Username",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.inversePrimary,
+                          color: Colors.white,
                         ),
                       ),
                       RichText(
                         text: TextSpan(
                           text: user!.email ?? "user email",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                           children: [
                             TextSpan(
-                                text: "(${user!.emailVerified})",
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                              text:
+                                  "(${user!.emailVerified ? "verified" : "unverified"})",
+                            ),
                           ],
                         ),
                       ),
@@ -79,7 +77,7 @@ class SettingsHeader extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 25),
             child: IconButton(
               onPressed: () => Navigator.push(
                 context,
@@ -87,9 +85,9 @@ class SettingsHeader extends StatelessWidget {
                   builder: ((context) => const SettingsPage()),
                 ),
               ),
-              icon: Icon(
+              icon: const Icon(
                 Icons.settings,
-                color: Theme.of(context).colorScheme.inversePrimary,
+                color: Colors.white,
               ),
             ),
           )
