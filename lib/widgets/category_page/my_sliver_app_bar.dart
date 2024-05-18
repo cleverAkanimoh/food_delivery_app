@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/pages/cart_page.dart';
 
+import '../back_button.dart';
+
 class MySliverAppBar extends StatelessWidget {
   final Widget child;
   final Widget title;
@@ -15,6 +17,7 @@ class MySliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      leading: const CustomBackButton(),
       expandedHeight: 340,
       collapsedHeight: 120,
       floating: false,
