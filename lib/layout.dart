@@ -60,11 +60,12 @@ class _LayoutState extends State<Layout> {
                     width: MediaQuery.of(context).size.width,
                     child: BottomAppBar(
                       color: Colors.transparent,
-                      height: 90,
+                      surfaceTintColor: Colors.transparent,
+                      height: 80,
                       padding: const EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                        bottom: 20,
+                        left: smallWhiteSpace,
+                        right: smallWhiteSpace,
+                        bottom: smallWhiteSpace,
                       ),
                       child: Container(
                         padding: const EdgeInsets.symmetric(

@@ -19,7 +19,7 @@ class MenuPage extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: const [
-              SizedBox(height: 15),
+              SizedBox(height: smallWhiteSpace),
               SettingsContainer(
                 heading: "General",
                 child: Column(

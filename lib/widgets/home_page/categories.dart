@@ -21,47 +21,49 @@ class _CategoriesState extends State<Categories> {
         horizontal: whiteSpace,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           categoryButton(
             "gadget",
             "assets/map/pin_red.jpg",
-            () {},
+            const CategoryPage(category: "Gadget"),
           ),
-          categoryButton("meals", "assets/map/pin_blue.jpg", () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CategoryPage(
-                    category: "meals",
-                  ),
-                ));
-          }),
+          categoryButton(
+            "meals",
+            "assets/map/pin_blue.jpg",
+            const CategoryPage(category: "Meals"),
+          ),
           categoryButton(
             "delivery",
             "assets/images/delivery.png",
-            () {},
+            const CategoryPage(category: "Delivery"),
           ),
         ],
       ),
     );
   }
 
-  GestureDetector categoryButton(
-      String title, String imageSrc, void Function()? onTap) {
+  GestureDetector categoryButton(String title, String imageSrc, Widget moveTo) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => moveTo,
+            ));
+      },
       child: Column(
         children: [
           Image.asset(
             imageSrc,
-            width: 50,
+            width: 60,
           ),
           const SizedBox(height: smallWhiteSpace),
           Text(
-            title,
+            title.toUpperCase(),
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
-              fontSize: 16,
+              fontSize: paragraphSize,
               fontWeight: FontWeight.bold,
             ),
           )
