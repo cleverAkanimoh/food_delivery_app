@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 
 class SectionViewAll extends StatelessWidget {
   const SectionViewAll({super.key, required this.heading, required this.onTap});
@@ -8,31 +9,31 @@ class SectionViewAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: whiteSpace),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             heading!,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: headingSize,
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
           GestureDetector(
             onTap: onTap,
-            child: Row(
+            child: const Row(
               children: [
                 Text(
                   "View all",
                   style: TextStyle(
                     fontSize: 12,
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.w400,
+                    color: mainColor,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
-                const Icon(Icons.arrow_right)
+                Icon(Icons.arrow_right)
               ],
             ),
           )

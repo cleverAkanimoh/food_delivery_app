@@ -52,101 +52,97 @@ class _LayoutState extends State<Layout> {
         builder: (context, constraints) {
           if (constraints.maxWidth < mobileWidth) {
             // Use a more mobile-friendly layout with BottomNavigationBar on narrow screens.
-            return Column(
+            return Stack(
               children: [
-                Expanded(
-                  child: mainArea,
-                ),
-                SafeArea(
-                  bottom: false,
-                  child: BottomAppBar(
-                    height: 90,
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                      top: 1,
-                      right: 20,
-                      bottom: 20,
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 0,
+                mainArea,
+                Positioned(
+                    bottom: 0,
+                    width: MediaQuery.of(context).size.width,
+                    child: BottomAppBar(
+                      color: Colors.transparent,
+                      height: 90,
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        bottom: 20,
                       ),
-                      decoration: BoxDecoration(
-                        color: colorScheme.tertiary,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          appBarItem(
-                            0,
-                            "Home",
-                            Icons.home_outlined,
-                            Icons.home,
-                          ),
-                          appBarItem(
-                            1,
-                            "Favorites",
-                            Icons.favorite_outline_outlined,
-                            Icons.favorite,
-                          ),
-                          Transform.translate(
-                            offset: const Offset(0, -16),
-                            child: Container(
-                              width: 70,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                color: mainColor,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 5,
-                                  color: colorScheme.tertiary,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.05),
-                                    spreadRadius: 1,
-                                    blurRadius: 1,
-                                    offset: const Offset(0, -4),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        decoration: BoxDecoration(
+                          color: colorScheme.tertiary,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            appBarItem(
+                              0,
+                              "Home",
+                              Icons.home_outlined,
+                              Icons.home,
+                            ),
+                            appBarItem(
+                              1,
+                              "Favorites",
+                              Icons.favorite_outline_outlined,
+                              Icons.favorite,
+                            ),
+                            Transform.translate(
+                              offset: const Offset(0, -16),
+                              child: Container(
+                                width: 70,
+                                height: 70,
+                                decoration: BoxDecoration(
+                                  color: mainColor,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 5,
+                                    color: colorScheme.tertiary,
                                   ),
-                                ],
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const CartPage(),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.05),
+                                      spreadRadius: 1,
+                                      blurRadius: 1,
+                                      offset: const Offset(0, -4),
                                     ),
-                                  );
-                                },
-                                icon: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  color: colorScheme.tertiary,
-                                  size: 28,
+                                  ],
+                                ),
+                                child: IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const CartPage(),
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.shopping_cart_outlined,
+                                    color: colorScheme.tertiary,
+                                    size: 28,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          appBarItem(
-                            2,
-                            "Order",
-                            Icons.library_books_outlined,
-                            Icons.library_books,
-                          ),
-                          appBarItem(
-                            3,
-                            "Menu",
-                            Icons.menu,
-                            Icons.settings,
-                          ),
-                        ],
+                            appBarItem(
+                              2,
+                              "Order",
+                              Icons.library_books_outlined,
+                              Icons.library_books,
+                            ),
+                            appBarItem(
+                              3,
+                              "Menu",
+                              Icons.menu,
+                              Icons.settings,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
-                )
+                    ))
               ],
             );
           } else {
@@ -241,7 +237,7 @@ class _LayoutState extends State<Layout> {
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: FontWeight.bold,
               color: currentPage == index ? inversePrimaryColor : primaryColor,
             ),

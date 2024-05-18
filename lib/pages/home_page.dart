@@ -33,14 +33,24 @@ class _HomePageState extends State<HomePage> {
           children: [
             HomeHeader(),
             MyTextField(
-                controller: searchController,
-                hintText: "Search",
-                obscureText: false,
-                icon: Icons.format_list_bulleted_sharp),
+              controller: searchController,
+              hintText: "Search",
+              obscureText: false,
+              icon: Icons.format_list_bulleted_sharp,
+            ),
             const Categories(),
-            FeaturedContainer(heading: "Featured products", viewAll: () {}),
             const ProductCarousel(),
-            FeaturedContainer(heading: "Featured stores", viewAll: () {}),
+            FeaturedContainer(
+              heading: "Featured products",
+              viewAll: () {},
+            ),
+            FeaturedContainer(
+              heading: "Featured stores",
+              viewAll: () {},
+            ),
+            const SizedBox(
+              height: extraLargeWhiteSpace,
+            ),
           ],
         ),
       ),

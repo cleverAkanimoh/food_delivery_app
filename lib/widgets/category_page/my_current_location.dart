@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/map_page.dart';
 import '/models/restaurant.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +59,7 @@ class MyCurrentLocation extends StatelessWidget {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,
+                fontSize: smallSize,
               ),
             );
           }),

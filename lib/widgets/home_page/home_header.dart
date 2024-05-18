@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/notification_page.dart';
 import 'package:food_delivery_app/widgets/category_page/my_current_location.dart';
 
@@ -13,7 +14,8 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(
+          vertical: smallWhiteSpace, horizontal: whiteSpace),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -37,7 +39,7 @@ class HomeHeader extends StatelessWidget {
               MyCurrentLocation(),
             ],
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: smallWhiteSpace),
           Stack(
             children: [
               IconButton(
@@ -49,10 +51,10 @@ class HomeHeader extends StatelessWidget {
                     ),
                   );
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.notifications_outlined,
-                  color: Colors.black,
-                  size: 26,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  size: emphasisText,
                 ),
                 padding: const EdgeInsets.all(10),
               ),
@@ -60,8 +62,8 @@ class HomeHeader extends StatelessWidget {
                   top: 10,
                   right: 15,
                   child: Container(
-                    height: 6,
-                    width: 6,
+                    height: 5,
+                    width: 5,
                     decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50)),
