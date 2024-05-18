@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 
 class SettingsContainer extends StatelessWidget {
   final Widget child;
@@ -12,30 +13,32 @@ class SettingsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+      margin: const EdgeInsets.symmetric(
+          vertical: smallWhiteSpace, horizontal: whiteSpace),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             heading,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: paragraphSize,
               fontWeight: FontWeight.w300,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-            margin: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.symmetric(
+                horizontal: whiteSpace, vertical: smallWhiteSpace),
+            margin: const EdgeInsets.only(top: extraSmallWhiteSpace),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(roundedMd),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(.15),
-                    blurRadius: 8,
-                    spreadRadius: 1,
+                    color: mainColor.withOpacity(shadowOpacity),
+                    blurRadius: blurRadius,
+                    spreadRadius: spreadRadius,
                   )
                 ]),
             child: child,

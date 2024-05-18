@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 
 class SettingsCustomTile extends StatelessWidget {
   final Widget moveTo;
@@ -23,7 +24,7 @@ class SettingsCustomTile extends StatelessWidget {
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(
-          vertical: 15,
+          vertical: smallWhiteSpace,
         ),
         decoration: BoxDecoration(
           border: hasBorder!
@@ -39,11 +40,11 @@ class SettingsCustomTile extends StatelessWidget {
             Icon(
               icon,
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: smallWhiteSpace),
             Text(
               label,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: paragraphSize,
               ),
             ),
           ],

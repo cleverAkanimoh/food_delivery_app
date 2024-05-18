@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/profile_page.dart';
 import 'package:food_delivery_app/pages/settings_page.dart';
@@ -17,10 +18,9 @@ class SettingsHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(smallWhiteSpace),
       height: 170,
+      width: MediaQuery.of(context).size.width,
       color: mainColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
+      child: Stack(
         children: [
           GestureDetector(
             onTap: () => Navigator.push(
@@ -29,9 +29,8 @@ class SettingsHeader extends StatelessWidget {
                 builder: (context) => const ProfilePage(),
               ),
             ),
-            child: Flex(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              direction: Axis.vertical,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 user!.photoURL != null
                     ? SizedBox(
@@ -46,11 +45,11 @@ class SettingsHeader extends StatelessWidget {
                 const SizedBox(height: extraSmallWhiteSpace),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: smallWhiteSpace,
+                    top: whiteSpace,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         user!.displayName ?? "Username",
@@ -62,7 +61,8 @@ class SettingsHeader extends StatelessWidget {
                       ),
                       RichText(
                         text: TextSpan(
-                          text: user!.email ?? "user email",
+                          text:
+                              "${user!.email!.substring(0, 3)}***@${user!.email!.split("@")[1]}",
                           style: TextStyle(
                             fontSize: smallSize,
                             fontWeight: FontWeight.bold,
@@ -87,16 +87,26 @@ class SettingsHeader extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => const SettingsPage()),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                shape: BoxShape.circle,
               ),
-            ),
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.white,
+              child: IconButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => const SettingsPage()),
+                  ),
+                ),
+                icon: const Icon(
+                  Icons.settings,
+                  color: mainColor,
+                ),
+              ),
             ),
           )
         ],

@@ -17,7 +17,6 @@ class MenuPage extends StatelessWidget {
         SettingsHeader(),
         Expanded(
           child: ListView(
-            padding: EdgeInsets.zero,
             children: const [
               SizedBox(height: smallWhiteSpace),
               SettingsContainer(
@@ -127,7 +126,7 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: whiteSpace),
+              SizedBox(height: extraLargeWhiteSpace),
             ],
           ),
         ),
