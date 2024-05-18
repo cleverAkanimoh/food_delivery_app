@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/back_button.dart';
+
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
 
@@ -9,6 +11,7 @@ class NotificationPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Notifications"),
         backgroundColor: Colors.transparent,
+        leading: const CustomBackButton(),
         actions: [
           IconButton(
             onPressed: () {},

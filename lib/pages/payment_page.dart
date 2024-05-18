@@ -3,6 +3,8 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:food_delivery_app/pages/delivery_progress_page.dart';
 import 'package:food_delivery_app/widgets/my_button.dart';
 
+import '../widgets/back_button.dart';
+
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
 
@@ -69,6 +71,7 @@ class _PaymentPageState extends State<PaymentPage> {
         title: const Text("Checkout"),
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         backgroundColor: Colors.transparent,
+        leading: const CustomBackButton(),
       ),
       body: Column(
         children: [

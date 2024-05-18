@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/profile_page.dart';
 import 'package:food_delivery_app/pages/settings_page.dart';
@@ -19,14 +18,19 @@ class SettingsHeader extends StatelessWidget {
       padding: const EdgeInsets.all(smallWhiteSpace),
       height: 170,
       width: MediaQuery.of(context).size.width,
-      color: mainColor,
+      decoration: const BoxDecoration(
+          color: mainColor,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(roundedLg),
+            bottomRight: Radius.circular(roundedLg),
+          )),
       child: Stack(
         children: [
           GestureDetector(
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ProfilePage(),
+                builder: (context) => ProfilePage(),
               ),
             ),
             child: Row(

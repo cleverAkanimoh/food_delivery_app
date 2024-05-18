@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
+
+import '../widgets/back_button.dart';
 // import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:location/location.dart';
@@ -107,11 +110,12 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: const CustomBackButton(),
           backgroundColor: Theme.of(context).colorScheme.background,
           title: const Text(
             "Your location",
             style: TextStyle(
-              fontSize: 16,
+              fontSize: paragraphSize,
             ),
           ),
         ),

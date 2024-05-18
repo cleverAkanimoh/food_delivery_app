@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/models/meals/food.dart';
-import 'package:food_delivery_app/models/restaurant.dart';
-import 'package:food_delivery_app/widgets/my_button.dart';
+import '/constants.dart';
+import '/models/meals/food.dart';
+import '/models/restaurant.dart';
+import '/widgets/my_button.dart';
+import '/widgets/back_button.dart';
 import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
@@ -51,7 +53,7 @@ class _FoodPageState extends State<FoodPage> {
                       child: Image.asset(widget.food.imagePath)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(25),
+                  padding: const EdgeInsets.all(whiteSpace),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -65,32 +67,32 @@ class _FoodPageState extends State<FoodPage> {
                       Text(
                         "\$${widget.food.price.toString()}",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: paragraphSize,
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: extraSmallWhiteSpace),
                       Text(
                         widget.food.description,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: paragraphSize,
                           color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: extraSmallWhiteSpace),
                       Divider(
                         color: Theme.of(context).colorScheme.secondary,
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: extraSmallWhiteSpace),
                       Text(
                         "Add-ons",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: paragraphSize,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).colorScheme.inversePrimary,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: extraSmallWhiteSpace),
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -138,17 +140,13 @@ class _FoodPageState extends State<FoodPage> {
           child: Opacity(
             opacity: 0.6,
             child: Container(
-                margin: const EdgeInsets.only(left: 15, top: 25),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                  ),
-                )),
+              margin: const EdgeInsets.only(left: 15, top: whiteSpace),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                shape: BoxShape.circle,
+              ),
+              child: const CustomBackButton(),
+            ),
           ),
         )
       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/pages/category_page.dart';
+import 'package:food_delivery_app/widgets/back_button.dart';
 import '/models/restaurant.dart';
 import '/services/database/firestore.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Delivery in progress..."),
+        leading: const CustomBackButton(),
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),

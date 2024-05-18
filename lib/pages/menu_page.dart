@@ -17,8 +17,8 @@ class MenuPage extends StatelessWidget {
         SettingsHeader(),
         Expanded(
           child: ListView(
-            children: const [
-              SizedBox(height: smallWhiteSpace),
+            children: [
+              const SizedBox(height: smallWhiteSpace),
               SettingsContainer(
                 heading: "General",
                 child: Column(
@@ -28,12 +28,12 @@ class MenuPage extends StatelessWidget {
                       label: 'Profile',
                       icon: Icons.person,
                     ),
-                    SettingsCustomTile(
+                    const SettingsCustomTile(
                       moveTo: MapPage(),
                       label: 'My Address',
                       icon: Icons.location_city_outlined,
                     ),
-                    SettingsCustomTile(
+                    const SettingsCustomTile(
                       moveTo: Layout(),
                       label: 'Language',
                       icon: Icons.language,
@@ -42,7 +42,7 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SettingsContainer(
+              const SettingsContainer(
                 heading: "Promotional Activity",
                 child: Column(
                   children: [
@@ -65,7 +65,7 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SettingsContainer(
+              const SettingsContainer(
                 heading: "Earnings",
                 child: Column(
                   children: [
@@ -88,7 +88,7 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SettingsContainer(
+              const SettingsContainer(
                 heading: "Help & Support",
                 child: Column(
                   children: [
@@ -126,7 +126,7 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: extraLargeWhiteSpace),
+              const SizedBox(height: extraLargeWhiteSpace),
             ],
           ),
         ),

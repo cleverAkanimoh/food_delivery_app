@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/widgets/home_button.dart';
+import '../widgets/back_button.dart';
 import '/models/restaurant.dart';
 import '/widgets/cart_page/my_cart_tile.dart';
 import '/widgets/my_button.dart';
@@ -20,6 +21,7 @@ class CartPage extends StatelessWidget {
         // ui scaffold
         return Scaffold(
           appBar: AppBar(
+            leading: const CustomBackButton(),
             title: const Text("Cart"),
             backgroundColor: Colors.transparent,
             foregroundColor: Theme.of(context).colorScheme.inversePrimary,

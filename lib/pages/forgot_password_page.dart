@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/widgets/back_button.dart';
 
 import '../constants.dart';
 import '../widgets/auth/my_text_field.dart';
@@ -23,6 +24,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text("Forgot Password"),
+        leading: const CustomBackButton(),
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: SafeArea(
