@@ -16,11 +16,11 @@ class SettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(smallWhiteSpace),
-      height: 180,
+      height: 170,
       color: mainColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           GestureDetector(
             onTap: () => Navigator.push(
@@ -29,19 +29,25 @@ class SettingsHeader extends StatelessWidget {
                 builder: (context) => const ProfilePage(),
               ),
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            child: Flex(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              direction: Axis.vertical,
               children: [
                 user!.photoURL != null
-                    ? Image.network(user?.photoURL ?? "")
+                    ? SizedBox(
+                        width: largeWhiteSpace,
+                        child: Image.network(user?.photoURL ?? ""),
+                      )
                     : const Icon(
                         Icons.person,
-                        size: 80,
+                        size: largeWhiteSpace,
                         color: Colors.white,
                       ),
-                const SizedBox(width: 10),
+                const SizedBox(height: extraSmallWhiteSpace),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(
+                    left: smallWhiteSpace,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -49,7 +55,7 @@ class SettingsHeader extends StatelessWidget {
                       Text(
                         user!.displayName ?? "Username",
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: paragraphSize,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -57,15 +63,20 @@ class SettingsHeader extends StatelessWidget {
                       RichText(
                         text: TextSpan(
                           text: user!.email ?? "user email",
-                          style: const TextStyle(
-                            fontSize: 12,
+                          style: TextStyle(
+                            fontSize: smallSize,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.white.withOpacity(.5),
                           ),
                           children: [
                             TextSpan(
                               text:
-                                  "(${user!.emailVerified ? "verified" : "unverified"})",
+                                  " (${user!.emailVerified ? "verified" : "unverified"})",
+                              style: TextStyle(
+                                color: user!.emailVerified
+                                    ? Colors.green
+                                    : Colors.red,
+                              ),
                             ),
                           ],
                         ),
@@ -76,19 +87,16 @@ class SettingsHeader extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: whiteSpace),
-            child: IconButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: ((context) => const SettingsPage()),
-                ),
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => const SettingsPage()),
               ),
-              icon: const Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
+            ),
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.white,
             ),
           )
         ],

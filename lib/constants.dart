@@ -4,6 +4,7 @@ const mobileWidth = 480;
 const tabletWidth = 785;
 const laptopWidth = 1200;
 
+const extraSmallWhiteSpace = 5.0;
 const smallWhiteSpace = 15.0;
 const whiteSpace = 25.0;
 const largeWhiteSpace = 80.0;
