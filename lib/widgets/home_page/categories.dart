@@ -25,17 +25,17 @@ class _CategoriesState extends State<Categories> {
         children: [
           categoryButton(
             "gadget",
-            "assets/map/pin_red.jpg",
+            "assets/images/gadget.jpg",
             const CategoryPage(category: "Gadget"),
           ),
           categoryButton(
             "meals",
-            "assets/map/pin_blue.jpg",
+            "assets/images/meals.jpg",
             const CategoryPage(category: "Meals"),
           ),
           categoryButton(
             "delivery",
-            "assets/images/delivery.png",
+            "assets/images/delivery.jpg",
             const CategoryPage(category: "Delivery"),
           ),
         ],
@@ -54,9 +54,13 @@ class _CategoriesState extends State<Categories> {
       },
       child: Column(
         children: [
-          Image.asset(
-            imageSrc,
-            width: 60,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(roundedMd),
+            child: Image.asset(
+              imageSrc,
+              width: 60,
+              height: 60,
+            ),
           ),
           const SizedBox(height: smallWhiteSpace),
           Text(

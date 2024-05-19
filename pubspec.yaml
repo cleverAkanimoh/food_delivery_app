@@ -51,7 +51,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-    - assets/map/
+    - assets/images/map/
+    - assets/images/products/
 
   fonts:
     - family: SchibstedGrotesk
