@@ -74,14 +74,6 @@ class _MapPageState extends State<MapPage> {
                     markerId: const MarkerId("currentLocation"),
                     position: _userLocation!,
                   ),
-                  // const Marker(
-                  //   markerId: MarkerId("sourceLocation"),
-                  //   position: _pGooglePlex,
-                  // ),
-                  // const Marker(
-                  //   markerId: MarkerId("destinationLocation"),
-                  //   position: _pApplePark,
-                  // ),
                 },
               ),
       ),
