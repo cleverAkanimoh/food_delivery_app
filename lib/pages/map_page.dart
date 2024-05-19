@@ -24,12 +24,8 @@ class _MapPageState extends State<MapPage> {
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
 
-  static const LatLng _pGooglePlex = LatLng(37.4223, -122.0848);
-  static const LatLng _pApplePark = LatLng(37.3346, -122.0090);
-
   Location location = Location();
   LatLng? _userLocation;
-  LocationData? _locationData;
 
   // void _liveLocation() {}
 
@@ -112,29 +108,21 @@ class _MapPageState extends State<MapPage> {
       }
     }
 
-    _locationData = await location.getLocation();
-    setState(() {
-      _userLocation = LatLng(
-        _locationData!.latitude!,
-        _locationData!.longitude!,
-      );
-      _cameraToPosition(_userLocation!);
-    });
-    // location.onLocationChanged.listen(
-    //   (LocationData locationData) {
-    //     if (locationData.latitude != null && locationData.longitude != null) {
-    //       setState(
-    //         () {
-    //           _userLocation = LatLng(
-    //             locationData.latitude!,
-    //             locationData.longitude!,
-    //           );
+    location.onLocationChanged.listen(
+      (LocationData locationData) {
+        if (locationData.latitude != null && locationData.longitude != null) {
+          setState(
+            () {
+              _userLocation = LatLng(
+                locationData.latitude!,
+                locationData.longitude!,
+              );
 
-    //           _cameraToPosition(_userLocation!);
-    //         },
-    //       );
-    //     }
-    //   },
-    // );
+              _cameraToPosition(_userLocation!);
+            },
+          );
+        }
+      },
+    );
   }
 }
