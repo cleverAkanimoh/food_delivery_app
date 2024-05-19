@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:food_delivery_app/constants.dart';
+import 'dart:async';
 
-import '../widgets/back_button.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
+
+import '/constants.dart';
+import '/widgets/back_button.dart';
 
 class MapPage extends StatefulWidget {
   final bool? isTrackOrder;
@@ -18,153 +21,128 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  // final Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _mapController =
+      Completer<GoogleMapController>();
 
-  static const LatLng sourceLocation = LatLng(37.4223, -122.0848);
-  static const LatLng destination = LatLng(37.3346, -122.0090);
+  static const LatLng _pGooglePlex = LatLng(37.4223, -122.0848);
+  static const LatLng _pApplePark = LatLng(37.3346, -122.0090);
 
-  // List<LatLng> polylineCoordinates = [];
-  // LocationData? currentLocation;
+  Location location = Location();
+  LatLng? _userLocation;
+  LocationData? _locationData;
 
-  // BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
-  // BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
-  // BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
-
-  // void getCurrentLocation() async {
-  //   Location location = Location();
-
-  //   location.getLocation().then(
-  //     (location) {
-  //       currentLocation = location;
-  //     },
-  //   );
-
-  //   GoogleMapController googleMapController = await _controller.future;
-
-  //   location.onLocationChanged.listen(
-  //     (newLocation) {
-  //       currentLocation = newLocation;
-
-  //       googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-  //         CameraPosition(
-  //           zoom: 13.5,
-  //           target: LatLng(
-  //             newLocation.latitude!,
-  //             newLocation.longitude!,
-  //           ),
-  //         ),
-  //       ));
-
-  //       setState(() {});
-  //     },
-  //   );
-  // }
-
-  // void getPolyPoints() async {
-  //   PolylinePoints polylinePoints = PolylinePoints();
-
-  //   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-  //     "AIzaSyB7z29ShdZXJaWiDWauMX7Iav0GQkMBsYU",
-  //     PointLatLng(sourceLocation.latitude, sourceLocation.longitude),
-  //     PointLatLng(destination.latitude, destination.longitude),
-  //   );
-
-  //   if (result.points.isNotEmpty) {
-  //     result.points.forEach(
-  //       (PointLatLng point) => polylineCoordinates.add(
-  //         LatLng(point.latitude, point.longitude),
-  //       ),
-  //     );
-  //     setState(() {});
-  //   }
-  // }
-
-  // void setCustomMarkerIcon() {
-  //   BitmapDescriptor.fromAssetImage(
-  //           ImageConfiguration.empty, "assets/map/pin_blue.jpg")
-  //       .then((icon) {
-  //     sourceIcon = icon;
-  //   });
-  //   BitmapDescriptor.fromAssetImage(
-  //           ImageConfiguration.empty, "assets/map/pin_red.jpg")
-  //       .then((icon) {
-  //     destinationIcon = icon;
-  //   });
-  //   BitmapDescriptor.fromAssetImage(
-  //           ImageConfiguration.empty, "assets/map/pin_future.jpg")
-  //       .then((icon) {
-  //     currentLocationIcon = icon;
-  //   });
-  // }
+  // void _liveLocation() {}
 
   @override
   void initState() {
-    // getCurrentLocation();
-    // setCustomMarkerIcon();
-    // getPolyPoints();
     super.initState();
+    getCurrentLocation();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: const CustomBackButton(),
-          backgroundColor: Theme.of(context).colorScheme.background,
-          title: const Text(
-            "Your location",
-            style: TextStyle(
-              fontSize: headingSize,
-            ),
+      appBar: AppBar(
+        leading: const CustomBackButton(),
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: const Text(
+          "Your location",
+          style: TextStyle(
+            fontSize: headingSize,
           ),
         ),
-        body:
-            // currentLocation == null
-            // ?
-            const Center(
-          child: Text("Loading"),
-        )
-        // :
-        //  GoogleMap(
-        //     initialCameraPosition: CameraPosition(
-        //       target: LatLng(
-        //         currentLocation!.latitude!,
-        //         currentLocation!.longitude!,
-        //       ),
-        //       zoom: 13,
-        //     ),
-        //     polylines: {
-        //       Polyline(
-        //         polylineId: const PolylineId("route"),
-        //         points: polylineCoordinates,
-        //         color: Theme.of(context).colorScheme.secondary,
-        //         width: 5,
-        //       ),
-        //     },
-        //     markers: {
-        //       Marker(
-        //         markerId: const MarkerId("currentLocation"),
-        //         icon: currentLocationIcon,
-        //         position: LatLng(
-        //           currentLocation!.latitude!,
-        //           currentLocation!.longitude!,
-        //         ),
-        //       ),
-        //       Marker(
-        //         markerId: const MarkerId("source"),
-        //         icon: sourceIcon,
-        //         position: sourceLocation,
-        //       ),
-        //       Marker(
-        //         markerId: const MarkerId("destination"),
-        //         icon: destinationIcon,
-        //         position: destination,
-        //       ),
-        //     },
-        //     onMapCreated: (mapController) {
-        //       _controller.complete(mapController);
-        //     },
-        //   ),
-        );
+      ),
+      body: Center(
+        child: _userLocation == null
+            ? const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CupertinoActivityIndicator(),
+                  SizedBox(width: extraSmallWhiteSpace),
+                  Text("Loading..."),
+                ],
+              )
+            : GoogleMap(
+                onMapCreated: (GoogleMapController controller) =>
+                    _mapController.complete(controller),
+                initialCameraPosition: CameraPosition(
+                  target: _userLocation!,
+                  zoom: 13,
+                ),
+                markers: {
+                  Marker(
+                    markerId: const MarkerId("currentLocation"),
+                    position: _userLocation!,
+                  ),
+                  // const Marker(
+                  //   markerId: MarkerId("sourceLocation"),
+                  //   position: _pGooglePlex,
+                  // ),
+                  // const Marker(
+                  //   markerId: MarkerId("destinationLocation"),
+                  //   position: _pApplePark,
+                  // ),
+                },
+              ),
+      ),
+    );
+  }
+
+  Future<void> _cameraToPosition(LatLng pos) async {
+    final GoogleMapController controller = await _mapController.future;
+    CameraPosition _newCameraPosition = CameraPosition(
+      target: pos,
+      zoom: 13,
+    );
+
+    await controller.animateCamera(
+      CameraUpdate.newCameraPosition(_newCameraPosition),
+    );
+  }
+
+  Future<void> getCurrentLocation() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+    setState(() {
+      _userLocation = LatLng(
+        _locationData!.latitude!,
+        _locationData!.longitude!,
+      );
+      _cameraToPosition(_userLocation!);
+    });
+    // location.onLocationChanged.listen(
+    //   (LocationData locationData) {
+    //     if (locationData.latitude != null && locationData.longitude != null) {
+    //       setState(
+    //         () {
+    //           _userLocation = LatLng(
+    //             locationData.latitude!,
+    //             locationData.longitude!,
+    //           );
+
+    //           _cameraToPosition(_userLocation!);
+    //         },
+    //       );
+    //     }
+    //   },
+    // );
   }
 }
