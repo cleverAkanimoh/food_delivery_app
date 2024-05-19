@@ -16,14 +16,9 @@ class SettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(smallWhiteSpace),
-      height: 170,
+      height: MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
-          color: mainColor,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(roundedLg),
-            bottomRight: Radius.circular(roundedLg),
-          )),
+      color: mainColor,
       child: Stack(
         children: [
           GestureDetector(
