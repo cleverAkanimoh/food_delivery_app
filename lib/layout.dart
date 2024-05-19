@@ -93,22 +93,22 @@ class _LayoutState extends State<Layout> {
                             Transform.translate(
                               offset: const Offset(0, -16),
                               child: Container(
-                                width: 70,
-                                height: 70,
+                                width: 60,
+                                height: 60,
                                 decoration: BoxDecoration(
                                   color: mainColor,
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     width: 5,
                                     color: colorScheme.tertiary,
+                                    strokeAlign: BorderSide.strokeAlignOutside,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: mainColor.withOpacity(.3),
                                       spreadRadius: spreadRadius,
                                       blurRadius: blurRadius,
-                                      // offset: const Offset(0, -8),
+                                      offset: const Offset(0, -2),
                                     ),
                                   ],
                                 ),

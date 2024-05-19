@@ -15,6 +15,7 @@ const mainColor = Colors.deepPurple;
 const blurRadius = 9.0;
 const spreadRadius = 2.0;
 const shadowOpacity = 0.1;
+const shadowOpacityMd = 0.3;
 
 const emphasisText = 24.0;
 const headingSize = 16.0;
