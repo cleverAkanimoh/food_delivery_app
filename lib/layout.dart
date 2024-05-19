@@ -72,9 +72,15 @@ class _LayoutState extends State<Layout> {
                           horizontal: 20,
                         ),
                         decoration: BoxDecoration(
-                          color: colorScheme.tertiary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                            color: colorScheme.tertiary,
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                              BoxShadow(
+                                color: mainColor.withOpacity(shadowOpacity),
+                                spreadRadius: spreadRadius,
+                                blurRadius: blurRadius,
+                              ),
+                            ]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -105,7 +111,8 @@ class _LayoutState extends State<Layout> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: mainColor.withOpacity(.3),
+                                      color: mainColor
+                                          .withOpacity(shadowOpacityMd),
                                       spreadRadius: spreadRadius,
                                       blurRadius: blurRadius,
                                       offset: const Offset(0, -2),
