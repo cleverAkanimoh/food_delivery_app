@@ -104,10 +104,13 @@ class _LayoutState extends State<Layout> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.grey.withOpacity(0.05),
-                                      spreadRadius: 1,
-                                      blurRadius: 1,
-                                      offset: const Offset(0, -4),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(shadowOpacity),
+                                      spreadRadius: spreadRadius,
+                                      blurRadius: blurRadius,
+                                      offset: const Offset(0, -2),
                                     ),
                                   ],
                                 ),
