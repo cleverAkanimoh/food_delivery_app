@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '/services/auth/auth_service.dart';
@@ -25,9 +26,14 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController();
 
   String errorMsg = "";
+  bool isLoading = false;
 
   // register function
   void register() async {
+    // show loading
+    setState(() {
+      isLoading = true;
+    });
     // get auth service
     final _authService = AuthService();
 
@@ -39,10 +45,27 @@ class _RegisterPageState extends State<RegisterPage> {
           emailController.text,
           passwordController.text,
         );
+
+        FirebaseFirestore.instance.collection('users').add({
+          "email": emailController.text,
+          "username": usernameController.text,
+          "imageUrl": null,
+          "address": null,
+          "loyaltyPoint": 0,
+          "coupons": [],
+          "role": "user",
+        });
+
+        setState(() {
+          isLoading = false;
+        });
       }
       // display any error
       catch (e) {
         var err = e.toString();
+        setState(() {
+          isLoading = false;
+        });
         if (err.contains("network-request-failed")) {
           setState(() {
             errorMsg = "Please check your network";
@@ -56,10 +79,17 @@ class _RegisterPageState extends State<RegisterPage> {
             errorMsg = "An Unknown Error Occurred";
           });
         }
-        Timer(const Duration(seconds: 5), () {
-          setState(() {
-            errorMsg = "";
-          });
+        Timer(
+          const Duration(seconds: 5),
+          () {
+            setState(() {
+              errorMsg = "";
+            });
+          },
+        );
+
+        setState(() {
+          isLoading = false;
         });
       }
     }
@@ -69,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
       setState(() {
         errorMsg = "Passwords don't match";
       });
-      Timer(const Duration(seconds: 5), () {
+      Timer(const Duration(seconds: 10), () {
         setState(() {
           errorMsg = "";
         });

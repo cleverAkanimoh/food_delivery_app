@@ -27,8 +27,6 @@ class _MapPageState extends State<MapPage> {
   Location location = Location();
   LatLng? _userLocation;
 
-  // void _liveLocation() {}
-
   @override
   void initState() {
     super.initState();

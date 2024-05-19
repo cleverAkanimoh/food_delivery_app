@@ -19,12 +19,13 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+      padding: const EdgeInsets.symmetric(
+          vertical: extraSmallWhiteSpace, horizontal: whiteSpace),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(15),
+          contentPadding: const EdgeInsets.all(smallWhiteSpace),
           prefixIcon: Icon(icon),
           prefixIconColor: Theme.of(context).colorScheme.inversePrimary,
           hintText: hintText,
@@ -35,13 +36,13 @@ class MyTextField extends StatelessWidget {
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary,
             ),
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(roundedFull),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: mainColor,
+            borderSide: BorderSide(
+              color: mainColor.withOpacity(shadowOpacityMd),
             ),
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(roundedFull),
           ),
         ),
       ),

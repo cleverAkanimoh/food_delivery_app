@@ -26,21 +26,33 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   String errorMsg = "";
+  bool isLoading = false;
 
   //  get instance of auth service
   final _authService = AuthService();
 
   void login() async {
+    // show loading
+    setState(() {
+      isLoading = true;
+    });
     // try sign in
     try {
       await _authService.signInWithEmailAndPassword(
         emailController.text,
         passwordController.text,
       );
+
+      setState(() {
+        isLoading = false;
+      });
     }
     // display any errors
     catch (e) {
       var err = e.toString();
+      setState(() {
+        isLoading = false;
+      });
       if (err.contains("network-request-failed")) {
         setState(() {
           errorMsg = "Please check your network";
@@ -54,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
           errorMsg = "An Unknown Error Occurred";
         });
       }
-      Timer(const Duration(seconds: 5), () {
+      Timer(const Duration(seconds: 10), () {
         setState(() {
           errorMsg = "";
         });
@@ -63,6 +75,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void loginWithGoogle() async {
+    // show loading
+    setState(() {
+      isLoading = true;
+    });
     // try sign in
     try {
       await _authService.signInWithGoogleProvider();
@@ -72,12 +88,22 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: ((context) => AlertDialog(
-              title: Text(e.toString()),
+              title: const Text(
+                "An Error Occurred",
+                style: TextStyle(
+                  fontSize: headingSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              content: Text(e.toString()),
             )),
       );
+
+      setState(() {
+        isLoading = false;
+      });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -94,14 +120,14 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: largeWhiteSpace),
                     Icon(
                       Icons.lock_open_rounded,
-                      size: 100,
+                      size: largeWhiteSpace,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                     const SizedBox(height: whiteSpace),
                     Text(
                       "Quick Delivery App",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: headingSize,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     ),
@@ -132,9 +158,8 @@ class _LoginPageState extends State<LoginPage> {
 
                     AnimatedContainer(
                       duration: Durations.medium4,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
-                      ),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: whiteSpace),
                       height: errorMsg == "" ? 0 : 40,
                       child: Row(
                         children: [
@@ -148,8 +173,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
 
-                    const SizedBox(height: whiteSpace),
-                    MyButton(onTap: login, text: "Sign in"),
+                    const SizedBox(height: smallWhiteSpace),
+                    MyButton(
+                      onTap: login,
+                      text: "Sign in",
+                      isLoading: isLoading,
+                    ),
                     const SizedBox(height: whiteSpace),
                     GestureDetector(
                       onTap: () => Navigator.push(
