@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 
 import '../widgets/back_button.dart';
-// import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:location/location.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
   final bool? isTrackOrder;
@@ -21,8 +20,8 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   // final Completer<GoogleMapController> _controller = Completer();
 
-  // static const LatLng sourceLocation = LatLng(37.4223, -122.0848);
-  // static const LatLng destination = LatLng(37.3346, -122.0090);
+  static const LatLng sourceLocation = LatLng(37.4223, -122.0848);
+  static const LatLng destination = LatLng(37.3346, -122.0090);
 
   // List<LatLng> polylineCoordinates = [];
   // LocationData? currentLocation;
@@ -115,7 +114,7 @@ class _MapPageState extends State<MapPage> {
           title: const Text(
             "Your location",
             style: TextStyle(
-              fontSize: paragraphSize,
+              fontSize: headingSize,
             ),
           ),
         ),
