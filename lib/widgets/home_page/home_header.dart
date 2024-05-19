@@ -9,6 +9,7 @@ class HomeHeader extends StatelessWidget {
   HomeHeader({super.key});
 
   final user = AuthService().getCurrentUser();
+  // final userInfo = 
 
   @override
   Widget build(BuildContext context) {

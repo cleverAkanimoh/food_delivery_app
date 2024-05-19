@@ -3,8 +3,10 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import '../widgets/error_text.dart';
 import '/services/auth/auth_service.dart';
 import '/widgets/auth/my_text_field.dart';
 import '/widgets/my_button.dart';
@@ -41,15 +43,16 @@ class _RegisterPageState extends State<RegisterPage> {
     if (passwordController.text == confirmPasswordController.text) {
       // try creating user
       try {
-        await _authService.signUpWithEmailAndPassword(
+        UserCredential _user = await _authService.signUpWithEmailAndPassword(
           emailController.text,
           passwordController.text,
         );
 
         FirebaseFirestore.instance.collection('users').add({
-          "email": emailController.text,
-          "username": usernameController.text,
-          "imageUrl": null,
+          "id": _user.user!.uid,
+          "email": emailController.text.trim(),
+          "username": usernameController.text.trim().replaceAll(" ", "_"),
+          "imageUrl": _user.user!.photoURL,
           "address": null,
           "loyaltyPoint": 0,
           "coupons": [],
@@ -74,13 +77,17 @@ class _RegisterPageState extends State<RegisterPage> {
           setState(() {
             errorMsg = "Invalid Credentials";
           });
+        } else if (err.contains("email-already-in-use")) {
+          setState(() {
+            errorMsg = "User already exist";
+          });
         } else {
           setState(() {
-            errorMsg = "An Unknown Error Occurred";
+            errorMsg = err;
           });
         }
         Timer(
-          const Duration(seconds: 5),
+          const Duration(seconds: 10),
           () {
             setState(() {
               errorMsg = "";
@@ -123,10 +130,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       const SizedBox(height: largeWhiteSpace),
                       Icon(
                         Icons.lock_open_rounded,
-                        size: 100,
+                        size: extraLargeWhiteSpace,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
-                      const SizedBox(height: whiteSpace),
+                      const SizedBox(height: smallWhiteSpace),
                       Text(
                         "Let's create an account for you",
                         style: TextStyle(
@@ -162,29 +169,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         icon: Icons.key,
                       ),
 
-                      AnimatedContainer(
-                        duration: Durations.medium4,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                        ),
-                        height: errorMsg == "" ? 0 : 40,
-                        child: Row(
-                          children: [
-                            Text(
-                              errorMsg,
-                              style: const TextStyle(
-                                color: Colors.redAccent,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ErrorText(errorMsg: errorMsg),
 
-                      const SizedBox(height: whiteSpace),
+                      const SizedBox(height: extraSmallWhiteSpace),
 
                       MyButton(
                         onTap: register,
                         text: "Register",
+                        isLoading: isLoading,
                       ),
 
                       const SizedBox(height: whiteSpace),

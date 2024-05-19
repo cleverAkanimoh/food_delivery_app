@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/services/auth/auth_service.dart';
 import 'package:food_delivery_app/widgets/back_button.dart';
 
 import '../constants.dart';
 import '../widgets/auth/my_text_field.dart';
+import '../widgets/error_text.dart';
 import '../widgets/my_button.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -16,8 +18,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController emailController = TextEditingController();
 
   String errorMsg = "";
+  bool isLoading = false;
 
-  void forgotPw() {}
+  final _authService = AuthService();
+
+  void forgotPw() {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      _authService.forgotPassword(emailController.text);
+    } catch (error) {
+      setState(() {
+        errorMsg = error.toString();
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,24 +55,25 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   children: [
                     Icon(
                       Icons.lock_open_rounded,
-                      size: 100,
+                      size: extraLargeWhiteSpace,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
-                    const SizedBox(height: whiteSpace),
+                    const SizedBox(height: smallWhiteSpace),
                     Text(
                       "Quick Delivery App",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: headingSize,
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     ),
                     const SizedBox(height: whiteSpace),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: whiteSpace),
                       child: Text(
                         "Enter your email and we will send you a reset link",
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: smallSize,
                           color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
@@ -69,27 +88,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       icon: Icons.alternate_email,
                     ),
 
-                    AnimatedContainer(
-                      duration: Durations.medium4,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
-                      ),
-                      height: errorMsg == "" ? 0 : 40,
-                      child: Row(
-                        children: [
-                          Text(
-                            errorMsg,
-                            style: const TextStyle(
-                              color: Colors.redAccent,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    ErrorText(errorMsg: errorMsg),
 
-                    const SizedBox(height: whiteSpace),
+                    const SizedBox(height: smallWhiteSpace),
                     MyButton(onTap: forgotPw, text: "Reset Password"),
-                    const SizedBox(height: whiteSpace),
+                    // const SizedBox(height: whiteSpace),
                   ],
                 ),
               ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/forgot_password_page.dart';
 import 'package:food_delivery_app/services/auth/auth_service.dart';
+import '../widgets/error_text.dart';
 import '/widgets/auth/my_text_field.dart';
 import '/widgets/my_button.dart';
 
@@ -59,11 +60,11 @@ class _LoginPageState extends State<LoginPage> {
         });
       } else if (err.contains("channel-error")) {
         setState(() {
-          errorMsg = "Invalid Credentials";
+          errorMsg = "Empty Field(s)";
         });
       } else {
         setState(() {
-          errorMsg = "An Unknown Error Occurred";
+          errorMsg = err.replaceAll("-", " ").replaceAll("Exception: ", "");
         });
       }
       Timer(const Duration(seconds: 10), () {
@@ -123,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                       size: largeWhiteSpace,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
-                    const SizedBox(height: whiteSpace),
+                    const SizedBox(height: smallWhiteSpace),
                     Text(
                       "Quick Delivery App",
                       style: TextStyle(
@@ -133,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: whiteSpace),
                     TextButton(
-                      onPressed: loginWithGoogle,
+                      onPressed: isLoading ? null : loginWithGoogle,
                       child: Text(
                         "Continue with google",
                         style: TextStyle(
@@ -156,22 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                       icon: Icons.key,
                     ),
 
-                    AnimatedContainer(
-                      duration: Durations.medium4,
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: whiteSpace),
-                      height: errorMsg == "" ? 0 : 40,
-                      child: Row(
-                        children: [
-                          Text(
-                            errorMsg,
-                            style: const TextStyle(
-                              color: Colors.redAccent,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    ErrorText(errorMsg: errorMsg),
 
                     const SizedBox(height: smallWhiteSpace),
                     MyButton(

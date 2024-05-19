@@ -7,42 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:150600351745:android:7823069b089830cef90000",
-        "android_client_info": {
-          "package_name": "com.example.flutter_social_login"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "150600351745-46agtjkj04nojhtocbn26v5v48op2p5o.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBXP5JFXUcA5hx74rf5A5Uk9Q9A_0J8Rq8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "150600351745-46agtjkj04nojhtocbn26v5v48op2p5o.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "150600351745-6taj3va8kt95mcn597bsljsfjaoi2so0.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.foodDeliveryApp"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:150600351745:android:73ecb29087893ab9f90000",
         "android_client_info": {
           "package_name": "com.example.food_delivery_app"
