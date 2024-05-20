@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../auth/auth_service.dart';
+
 class FireStoreService {
+  final loggedInUser = AuthService().getCurrentUser();
+
   final CollectionReference orders =
       FirebaseFirestore.instance.collection('orders');
 
-  final CollectionReference user =
+  final CollectionReference users =
       FirebaseFirestore.instance.collection('users');
 
   // save orders to db
@@ -16,7 +20,11 @@ class FireStoreService {
   }
 
   // save orders to db
-  Future<void> getCurrentUserFromDatabase(String email) async {
-    user.where(user.id == email);
+  Future getCurrentUserFromDatabase() async {
+    return await users
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              element.data();
+            },),);
   }
 }

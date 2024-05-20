@@ -49,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
 
         FirebaseFirestore.instance.collection('users').add({
-          "id": _user.user!.uid,
+          "userId": _user.user!.uid,
           "email": emailController.text.trim(),
           "username": usernameController.text.trim().replaceAll(" ", "_"),
           "imageUrl": _user.user!.photoURL,

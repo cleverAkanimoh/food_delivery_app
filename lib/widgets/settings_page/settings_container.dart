@@ -4,6 +4,7 @@ import 'package:food_delivery_app/constants.dart';
 class SettingsContainer extends StatelessWidget {
   final Widget child;
   final String heading;
+
   const SettingsContainer({
     super.key,
     required this.child,

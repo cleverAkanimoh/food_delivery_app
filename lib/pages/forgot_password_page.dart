@@ -91,7 +91,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ErrorText(errorMsg: errorMsg),
 
                     const SizedBox(height: smallWhiteSpace),
-                    MyButton(onTap: forgotPw, text: "Reset Password"),
+                    MyButton(
+                      onTap: forgotPw,
+                      text: "Reset Password",
+                      isLoading: isLoading,
+                    ),
                     // const SizedBox(height: whiteSpace),
                   ],
                 ),

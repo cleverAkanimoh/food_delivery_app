@@ -1,112 +1,136 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/constants.dart';
-import 'package:food_delivery_app/pages/profile_page.dart';
 import 'package:food_delivery_app/pages/settings_page.dart';
 
 import '../../services/auth/auth_service.dart';
+import '../colored_container.dart';
 
 class SettingsHeader extends StatelessWidget {
-  SettingsHeader({
-    super.key,
-  });
+  final bool? hasSettings;
+  SettingsHeader({super.key, this.hasSettings = true});
 
   final user = AuthService().getCurrentUser();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(smallWhiteSpace),
-      height: MediaQuery.of(context).size.height * 0.25,
+      padding: EdgeInsets.symmetric(
+          horizontal: smallWhiteSpace,
+          vertical: hasSettings! ? smallWhiteSpace : 0),
+      height: hasSettings! ? MediaQuery.of(context).size.height * 0.30 : null,
       width: MediaQuery.of(context).size.width,
-      color: mainColor,
       child: Stack(
         children: [
-          GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProfilePage(),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                user!.photoURL != null
-                    ? SizedBox(
-                        width: largeWhiteSpace,
-                        child: Image.network(user?.photoURL ?? ""),
-                      )
-                    : const Icon(
+          Column(
+            children: [
+              SizedBox(
+                width: largeWhiteSpace,
+                height: largeWhiteSpace,
+                child: user!.photoURL != null
+                    ? Image.network(user?.photoURL ?? "")
+                    : Icon(
                         Icons.person,
                         size: largeWhiteSpace,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                const SizedBox(height: extraSmallWhiteSpace),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: whiteSpace,
+              ),
+              const SizedBox(height: extraSmallWhiteSpace),
+              Column(
+                children: [
+                  Text(
+                    "Clever Akanimoh",
+                    style: TextStyle(
+                      fontSize: headingSize,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  const SizedBox(height: smallWhiteSpace),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        user!.displayName ?? "Username",
-                        style: const TextStyle(
-                          fontSize: paragraphSize,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      ColoredContainer(
+                        child: Text(
+                          "@KingCrush",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                          ),
                         ),
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text:
-                              "${user!.email!.substring(0, 3)}***@${user!.email!.split("@")[1]}",
-                          style: TextStyle(
-                            fontSize: smallSize,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white.withOpacity(.5),
-                          ),
+                      const SizedBox(width: extraSmallWhiteSpace),
+                      ColoredContainer(
+                        child: Row(
                           children: [
-                            TextSpan(
-                              text:
-                                  " (${user!.emailVerified ? "verified" : "unverified"})",
+                            const Icon(
+                              Icons.card_giftcard,
+                              size: headingSize,
+                            ),
+                            const SizedBox(width: extraSmallWhiteSpace),
+                            Text(
+                              "20 orders",
                               style: TextStyle(
-                                color: user!.emailVerified
-                                    ? Colors.green
-                                    : Colors.red,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
                               ),
                             ),
                           ],
                         ),
                       ),
+                      const SizedBox(width: extraSmallWhiteSpace),
+                      const ColoredContainer(
+                        color: mainColor,
+                        child: Row(
+                          children: [
+                            Text(
+                              "254",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.hotel_class,
+                              size: headingSize,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
                     ],
-                  ),
-                )
-              ],
-            ),
+                  )
+                ],
+              )
+            ],
           ),
           Positioned(
-            bottom: 0,
+            top: extraSmallWhiteSpace,
             right: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => const SettingsPage()),
-                  ),
-                ),
-                icon: const Icon(
-                  Icons.settings,
-                  color: mainColor,
-                ),
-              ),
-            ),
+            child: hasSettings!
+                ? Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(shadowOpacity),
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => const SettingsPage()),
+                        ),
+                      ),
+                      icon: const Icon(
+                        Icons.settings,
+                        color: mainColor,
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
           )
         ],
       ),
