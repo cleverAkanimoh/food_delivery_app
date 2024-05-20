@@ -12,7 +12,7 @@ class Restaurant extends ChangeNotifier {
       name: "Classic Cheese Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_1.jpg",
       price: 4.99,
       category: FoodCategory.burgers,
       availableAddons: [
@@ -25,7 +25,7 @@ class Restaurant extends ChangeNotifier {
       name: "BBQ Bacon Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_2.jpg",
       price: 4.99,
       category: FoodCategory.burgers,
       availableAddons: [
@@ -38,7 +38,7 @@ class Restaurant extends ChangeNotifier {
       name: "Veggie Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_3.jpg",
       price: 4.99,
       category: FoodCategory.burgers,
       availableAddons: [
@@ -53,7 +53,7 @@ class Restaurant extends ChangeNotifier {
       name: "Ceasar Salad",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_4.jpg",
       price: 4.99,
       category: FoodCategory.salads,
       availableAddons: [
@@ -66,7 +66,7 @@ class Restaurant extends ChangeNotifier {
       name: "Greek Salad",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_1.jpg",
       price: 3.99,
       category: FoodCategory.salads,
       availableAddons: [
@@ -79,7 +79,7 @@ class Restaurant extends ChangeNotifier {
       name: "Quinoa Salad",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_2.jpg",
       price: 8.99,
       category: FoodCategory.salads,
       availableAddons: [
@@ -95,7 +95,7 @@ class Restaurant extends ChangeNotifier {
       name: "Classic Cheese Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_3.jpg",
       price: 4.99,
       category: FoodCategory.sides,
       availableAddons: [
@@ -108,7 +108,7 @@ class Restaurant extends ChangeNotifier {
       name: "BBQ Bacon Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_4.jpg",
       price: 4.99,
       category: FoodCategory.sides,
       availableAddons: [
@@ -121,7 +121,7 @@ class Restaurant extends ChangeNotifier {
       name: "Veggie Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_1.jpg",
       price: 4.99,
       category: FoodCategory.sides,
       availableAddons: [
@@ -134,7 +134,7 @@ class Restaurant extends ChangeNotifier {
       name: "BBQ Bacon Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_2.jpg",
       price: 4.99,
       category: FoodCategory.sides,
       availableAddons: [
@@ -150,7 +150,7 @@ class Restaurant extends ChangeNotifier {
       name: "Veggie Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_3.jpg",
       price: 4.99,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -163,7 +163,7 @@ class Restaurant extends ChangeNotifier {
       name: "Classic Cheese Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_4.jpg",
       price: 4.99,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -176,7 +176,7 @@ class Restaurant extends ChangeNotifier {
       name: "BBQ Bacon Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_1.jpg",
       price: 4.99,
       category: FoodCategory.desserts,
       availableAddons: [
@@ -189,7 +189,7 @@ class Restaurant extends ChangeNotifier {
       name: "Veggie Burger",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/meal_2.jpg",
       price: 4.99,
       category: FoodCategory.burgers,
       availableAddons: [
@@ -203,7 +203,7 @@ class Restaurant extends ChangeNotifier {
       name: "mojito",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/classic_drink.jpg",
       price: 4.99,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -216,7 +216,7 @@ class Restaurant extends ChangeNotifier {
       name: "Coke",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/cocacola.jpg",
       price: 4.99,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -226,10 +226,36 @@ class Restaurant extends ChangeNotifier {
       ],
     ),
     Food(
-      name: "fanta",
+      name: "cocktail",
       description:
           "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
-      imagePath: "assets/images/food_image.avif",
+      imagePath: "assets/images/products/cocktail.jpg",
+      price: 4.99,
+      category: FoodCategory.drinks,
+      availableAddons: [
+        Addon(name: "Vegan Cheese", price: 0.99),
+        Addon(name: "Grilled Mushroom", price: 1.99),
+        Addon(name: "Humus Spread", price: 1.99),
+      ],
+    ),
+    Food(
+      name: "lemonade",
+      description:
+          "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
+      imagePath: "assets/images/products/lemonade.jpg",
+      price: 4.99,
+      category: FoodCategory.drinks,
+      availableAddons: [
+        Addon(name: "Vegan Cheese", price: 0.99),
+        Addon(name: "Grilled Mushroom", price: 1.99),
+        Addon(name: "Humus Spread", price: 1.99),
+      ],
+    ),
+    Food(
+      name: "luxury",
+      description:
+          "A juicy beef patty with melted cheddar, lettuce, tomato, and a hint of onion and pickle,",
+      imagePath: "assets/images/products/luxury_lemonade.jpg",
       price: 4.99,
       category: FoodCategory.drinks,
       availableAddons: [

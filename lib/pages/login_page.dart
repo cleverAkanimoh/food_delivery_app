@@ -7,6 +7,7 @@ import 'package:food_delivery_app/constants.dart';
 import 'package:food_delivery_app/pages/forgot_password_page.dart';
 import 'package:food_delivery_app/services/auth/auth_service.dart';
 import '../widgets/error_text.dart';
+import '../widgets/my_alert_dialog.dart';
 import '/widgets/auth/my_text_field.dart';
 import '/widgets/my_button.dart';
 
@@ -88,14 +89,8 @@ class _LoginPageState extends State<LoginPage> {
     catch (e) {
       showDialog(
         context: context,
-        builder: ((context) => AlertDialog(
-              title: const Text(
-                "An Error Occurred",
-                style: TextStyle(
-                  fontSize: headingSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+        builder: ((context) => MyAlertDialog(
+              title: "An error occurred",
               content: Text(e.toString()),
             )),
       );

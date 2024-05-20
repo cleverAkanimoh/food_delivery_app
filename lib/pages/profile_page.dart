@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/widgets/colored_container.dart';
-import 'package:food_delivery_app/widgets/settings_page/settings_header.dart';
+import '/widgets/my_alert_dialog.dart';
+import '/widgets/settings_page/settings_header.dart';
 
-import '../constants.dart';
-import '../services/auth/auth_service.dart';
-import '../widgets/back_button.dart';
-import '../widgets/settings_page/logout_widget.dart';
-import '../widgets/settings_page/settings_container.dart';
-import '../widgets/title_text.dart';
+import '/constants.dart';
+import '/services/auth/auth_service.dart';
+import '/widgets/back_button.dart';
+import '/widgets/settings_page/logout_widget.dart';
+import '/widgets/settings_page/settings_container.dart';
+import '/widgets/title_text.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -26,6 +26,7 @@ class ProfilePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
+            tooltip: "Edit Profile",
             icon: Icon(
               Icons.edit_document,
               color: Theme.of(context).colorScheme.inversePrimary,
@@ -77,12 +78,22 @@ class ProfilePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: ((context) => MyAlertDialog(
+                          title: "Delete Account",
+                          content: const Text(
+                              "Are you sure you want to delete your account?"),
+                          primaryActionColor: Colors.red,
+                          onPressed: () {},
+                        )),
+                  ),
                   child: const Text(
                     "Delete Account",
                     style: TextStyle(color: Colors.red),
                   ),
                 ),
+                const SizedBox(width: smallWhiteSpace),
                 const LogoutWidget(),
               ],
             ),

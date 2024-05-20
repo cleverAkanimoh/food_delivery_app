@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 import '../section_view_all.dart';
 
 class FeaturedContainer extends StatefulWidget {
   final String heading;
   final void Function()? viewAll;
-  const FeaturedContainer({
-    super.key,
-    required this.heading,
-    required this.viewAll,
-  });
+  final List<dynamic>? productItem;
+  const FeaturedContainer(
+      {super.key,
+      required this.heading,
+      required this.viewAll,
+      this.productItem});
 
   @override
   State<FeaturedContainer> createState() => _FeaturedContainerState();
@@ -18,42 +20,50 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: smallWhiteSpace),
       child: Column(
         children: [
           SectionViewAll(
             heading: widget.heading,
             onTap: widget.viewAll,
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: smallWhiteSpace),
           SizedBox(
-            height: 280,
+            height: 270,
             child: Column(
               children: [
                 Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: whiteSpace),
                     scrollDirection: Axis.horizontal,
                     children: [
                       featuredCard(
-                        "assets/images/for_sale_2.avif",
-                        "Apple watch pro",
+                        "assets/images/products/wireless_airbud.jpg",
+                        "Air Bud pro",
                         80000,
-                        2,
+                        9,
                       ),
-                      featuredCard("assets/images/gadget.avif",
-                          "Hp Inspiron 15", 100000, 5),
                       featuredCard(
-                        "assets/images/for_sale_1.avif",
-                        "Iphone 11",
-                        350000,
+                        "assets/images/products/headset.jpg",
+                        "Lion Headset Bass",
+                        50000,
+                        5,
+                      ),
+                      featuredCard(
+                        "assets/images/products/mac_book_1.jpg",
+                        "Mac book 2019",
+                        900000,
                         4,
                       ),
-                      featuredCard("assets/images/gadget.avif",
-                          "Dell Latitude E7470", 300000, 8),
                       featuredCard(
-                        "assets/images/for_sale_1.avif",
-                        "Apple Airpods",
+                        "assets/images/products/iphone_11.jpg",
+                        "Iphone 11",
+                        300000,
+                        8,
+                      ),
+                      featuredCard(
+                        "assets/images/products/galaxy_a04s.jpg",
+                        "Samsung galaxy A04s",
                         350000,
                         2,
                       ),
@@ -75,18 +85,17 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
     int left,
   ) {
     return Container(
-      margin: const EdgeInsets.only(right: 10),
+      margin: const EdgeInsets.only(right: smallWhiteSpace),
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.tertiary,
-          borderRadius: BorderRadius.circular(8)),
+          borderRadius: BorderRadius.circular(roundedMd)),
       child: Column(
         children: [
           SizedBox(
-            width: 150,
             height: 175,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(roundedMd),
               child: Image.asset(
                 image,
                 width: 150,
@@ -94,14 +103,15 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 18),
+            padding: const EdgeInsets.symmetric(
+                horizontal: extraSmallWhiteSpace, vertical: smallWhiteSpace),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: headingSize,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -110,7 +120,7 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
                     text: "NGN $price ",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 14,
+                      fontSize: paragraphSize,
                       fontWeight: FontWeight.bold,
                     ),
                     children: [
@@ -118,8 +128,8 @@ class _FeaturedContainerState extends State<FeaturedContainer> {
                           text: "$left units left",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w200,
+                            fontSize: smallSize,
+                            fontWeight: FontWeight.w300,
                           )),
                     ],
                   ),

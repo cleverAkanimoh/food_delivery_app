@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: mainColor,
         child: ListView(
           children: [
-            HomeHeader(),
+            const HomeHeader(),
             MyTextField(
               controller: searchController,
               hintText: "Search",

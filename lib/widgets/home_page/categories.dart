@@ -30,7 +30,7 @@ class _CategoriesState extends State<Categories> {
           ),
           categoryButton(
             "meals",
-            "assets/images/meals.jpg",
+            "assets/images/products/meal_1.jpg",
             const CategoryPage(category: "Meals"),
           ),
           categoryButton(
@@ -59,7 +59,6 @@ class _CategoriesState extends State<Categories> {
             child: Image.asset(
               imageSrc,
               width: 60,
-              height: 60,
             ),
           ),
           const SizedBox(height: smallWhiteSpace),
