@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const brandName = "Quick Delivery App";
+
+const smallMobileWidth = 375;
 const mobileWidth = 480;
 const tabletWidth = 785;
 const laptopWidth = 1200;

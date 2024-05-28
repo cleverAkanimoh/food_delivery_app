@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: smallWhiteSpace),
                     Text(
-                      "Quick Delivery App",
+                      brandName,
                       style: TextStyle(
                         fontSize: headingSize,
                         color: Theme.of(context).colorScheme.inversePrimary,

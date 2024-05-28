@@ -60,7 +60,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ),
                     const SizedBox(height: smallWhiteSpace),
                     Text(
-                      "Quick Delivery App",
+                      brandName,
                       style: TextStyle(
                         fontSize: headingSize,
                         color: Theme.of(context).colorScheme.inversePrimary,

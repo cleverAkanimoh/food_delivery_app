@@ -47,7 +47,9 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
                   context,
                   MaterialPageRoute(
                     builder: (builder) => const CategoryPage(
-                      category: 'meals',
+                      categoryHeading: 'meals',
+                      deliveryFee: 9.99,
+                      deliveryTime: "25min",
                     ),
                   ),
                 ),

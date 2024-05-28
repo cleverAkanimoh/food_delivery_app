@@ -22,6 +22,7 @@ class SettingsHeader extends StatelessWidget {
       child: Stack(
         children: [
           Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
                 width: largeWhiteSpace,

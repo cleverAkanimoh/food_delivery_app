@@ -26,17 +26,29 @@ class _CategoriesState extends State<Categories> {
           categoryButton(
             "gadget",
             "assets/images/gadget.jpg",
-            const CategoryPage(category: "Gadget"),
+            const CategoryPage(
+              categoryHeading: "Gadget",
+              deliveryTime: '15-40 minutes',
+              deliveryFee: 9.9,
+            ),
           ),
           categoryButton(
             "meals",
             "assets/images/products/meal_1.jpg",
-            const CategoryPage(category: "Meals"),
+            const CategoryPage(
+              categoryHeading: "Meals",
+              deliveryFee: 11.11,
+              deliveryTime: "20-30 minutes",
+            ),
           ),
           categoryButton(
             "delivery",
             "assets/images/delivery.jpg",
-            const CategoryPage(category: "Delivery"),
+            const CategoryPage(
+              categoryHeading: "Delivery",
+              deliveryFee: 4.99,
+              deliveryTime: "5-6 minutes",
+            ),
           ),
         ],
       ),
@@ -58,7 +70,9 @@ class _CategoriesState extends State<Categories> {
             borderRadius: BorderRadius.circular(roundedMd),
             child: Image.asset(
               imageSrc,
-              width: 60,
+              width: MediaQuery.of(context).size.width > smallMobileWidth
+                  ? MediaQuery.of(context).size.width * 0.16
+                  : MediaQuery.of(context).size.width * 0.265,
             ),
           ),
           const SizedBox(height: smallWhiteSpace),

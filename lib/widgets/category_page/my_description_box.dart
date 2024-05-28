@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 
 class MyDescriptionBox extends StatelessWidget {
-  const MyDescriptionBox({super.key});
+  final double deliveryFee;
+  final String deliveryTime;
+  const MyDescriptionBox({
+    super.key,
+    required this.deliveryFee,
+    required this.deliveryTime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,14 +17,14 @@ class MyDescriptionBox extends StatelessWidget {
     var mySecondaryTextStyle =
         TextStyle(color: Theme.of(context).colorScheme.primary);
     return Container(
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(whiteSpace),
       margin: const EdgeInsets.only(
-        left: 25,
-        right: 25,
+        left: whiteSpace,
+        right: whiteSpace,
         bottom: 40,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(roundedMd),
         border: Border.all(
           color: Theme.of(context).colorScheme.secondary,
         ),
@@ -29,7 +36,7 @@ class MyDescriptionBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "\$0.99",
+                "\$$deliveryFee",
                 style: myPrimaryTextStyle,
               ),
               Text(
@@ -42,7 +49,7 @@ class MyDescriptionBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "15-30 mins",
+                deliveryTime,
                 style: myPrimaryTextStyle,
               ),
               Text(

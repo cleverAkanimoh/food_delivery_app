@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/constants.dart';
 import '../widgets/category_page/my_current_location.dart';
 import '../widgets/category_page/my_description_box.dart';
 import '../widgets/category_page/my_food_tile.dart';
@@ -10,10 +11,14 @@ import '/widgets/my_tab_bar.dart';
 import 'package:provider/provider.dart';
 
 class CategoryPage extends StatefulWidget {
-  final String category;
+  final String categoryHeading;
+  final double deliveryFee;
+  final String deliveryTime;
   const CategoryPage({
     super.key,
-    required this.category,
+    required this.categoryHeading,
+    required this.deliveryFee,
+    required this.deliveryTime,
   });
 
   @override
@@ -71,20 +76,20 @@ class _CategoryPageState extends State<CategoryPage>
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           MySliverAppBar(
             title: MyTabBar(tabController: _tabController),
-            heading: widget.category,
+            heading: widget.categoryHeading,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25),
+              padding: const EdgeInsets.symmetric(vertical: whiteSpace),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Divider(
-                    indent: 25,
-                    endIndent: 25,
+                    indent: whiteSpace,
+                    endIndent: whiteSpace,
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                   //  current location
                   Padding(
-                    padding: const EdgeInsets.all(25),
+                    padding: const EdgeInsets.all(whiteSpace),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -92,7 +97,7 @@ class _CategoryPageState extends State<CategoryPage>
                           "Deliver here!",
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 16,
+                            fontSize: headingSize,
                           ),
                         ),
                         MyCurrentLocation(),
@@ -101,7 +106,10 @@ class _CategoryPageState extends State<CategoryPage>
                   ),
 
                   // description box
-                  const MyDescriptionBox()
+                  MyDescriptionBox(
+                    deliveryFee: widget.deliveryFee,
+                    deliveryTime: widget.deliveryTime,
+                  )
                 ],
               ),
             ),
